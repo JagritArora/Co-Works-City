@@ -1,0 +1,843 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Co Works City</title>
+<meta name="description" content="Coworking in Dwarka Sector 26, opposite the International Convention Center. Dedicated seats, private cabins, meeting rooms and a virtual office address.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='295 22 350 580'%3E%3Cellipse cx='470' cy='145' rx='93' ry='86' fill='none' stroke='%23ff3029' stroke-width='52'/%3E%3Cellipse cx='470' cy='381' rx='87' ry='80' fill='none' stroke='%2300a0e3' stroke-width='50'/%3E%3Cpath fill='%2300a0e3' transform='translate(7 228)' d='M304 361C304 320 350 262 398 240L470 254 542 240C590 262 637 320 637 361L583 361C575 330 540 280 470 278 400 280 365 330 357 361Z'/%3E%3Cpath fill='%23ff3029' d='M304 361C304 320 350 262 398 240L470 254 542 240C590 262 637 320 637 361L583 361C575 330 540 280 470 278 400 280 365 330 357 361Z'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0c0e14; --navy2:#151822; --blue:#00a0e3; --blue2:#4cc3f2; --blued:#0079ae; --red:#ff3029; --redd:#e5231c; --amber:#ffb547; --mint:#3ddc97; --coral:#ff6b5b;
+  --ink:#0c0e14; --mut:#5b6785; --bg:#f5f7fb; --card:#fff; --line:#e3e8f2;
+  --head:"Manrope",system-ui,sans-serif; --body:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:var(--body);color:var(--ink);background:#f3f8fd;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+/* ---------- site-wide background: brand aurora + dot grid (fixed, same on every section) ---------- */
+body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(circle at 1px 1px,rgba(12,14,20,.13) 1.1px,transparent 1.6px) 0 0/28px 28px,
+    linear-gradient(135deg,#fff5f4 0%,#f6faff 38%,#eaf6fd 70%,#fff3f2 100%)}
+body::after{content:"";position:fixed;inset:-25%;z-index:-1;pointer-events:none;will-change:transform;
+  background:
+    radial-gradient(40% 36% at 14% 18%,rgba(255,48,41,.20),transparent 70%),
+    radial-gradient(38% 40% at 88% 22%,rgba(0,160,227,.22),transparent 70%),
+    radial-gradient(42% 38% at 78% 86%,rgba(255,48,41,.13),transparent 70%),
+    radial-gradient(40% 40% at 10% 84%,rgba(0,160,227,.20),transparent 70%);
+  animation:aurora 28s ease-in-out infinite alternate}
+@keyframes aurora{0%{transform:translate3d(-2%,-1%,0) rotate(0) scale(1)}50%{transform:translate3d(3%,2%,0) rotate(6deg) scale(1.08)}100%{transform:translate3d(-1%,3%,0) rotate(-5deg) scale(1.03)}}
+a{color:inherit}
+.ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+section{padding:56px 0}
+section:not(#hero){position:relative}
+section:not(#hero)::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(1112px,calc(100% - 48px));height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--red) 18%,var(--blue) 82%,transparent);opacity:.45}
+.kicker{font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;color:var(--blued);font-weight:600;display:block;margin-bottom:14px}
+h1,h2,h3{font-family:var(--head);letter-spacing:-.01em;line-height:1.1;text-transform:uppercase}
+h2{font-size:clamp(2rem,4vw,3rem);font-weight:800;text-transform:uppercase}
+h2 em,h1 em{font-style:normal;color:var(--blued)}
+.lead{color:var(--mut);max-width:58ch;font-size:1.06rem;margin-top:16px}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+.btn,.live{text-transform:uppercase;letter-spacing:.04em}
+.btn{display:inline-flex;gap:10px;align-items:center;padding:14px 24px;border-radius:12px;font:600 .96rem var(--body);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.btn.p{background:var(--redd);color:#fff;box-shadow:0 10px 28px -10px rgba(255,48,41,.75)}
+.btn.p:hover{background:#c71a14;transform:translateY(-2px)}
+.btn.g{background:transparent;border-color:rgba(255,255,255,.28);color:#fff}
+.btn.g:hover{background:rgba(255,255,255,.08)}
+.btn.o{background:#fff;border-color:var(--line);color:var(--ink)}
+.btn.o:hover{border-color:var(--blue);color:var(--blued)}
+#bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--red),var(--blue));z-index:50}
+
+/* ---------- nav ---------- */
+nav.top{position:fixed;top:0;left:0;right:0;z-index:40;transition:background .3s,box-shadow .3s,color .3s;color:var(--ink)}
+nav.top ul a{text-transform:uppercase;letter-spacing:.06em}
+nav.top .logo{transition:opacity .3s}
+nav.top:not(.solid) .logo{opacity:0;pointer-events:none}
+nav.top.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);color:var(--ink)}
+nav .in{max-width:1160px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:32px}
+.logo{display:flex;gap:10px;align-items:center;text-decoration:none;font:800 1.1rem var(--head);letter-spacing:-.02em;margin-right:auto}
+.to-top{position:fixed;right:22px;bottom:22px;width:48px;height:48px;border-radius:50%;background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:0 10px 26px -8px rgba(12,14,20,.35);display:grid;place-items:center;z-index:60;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .3s,transform .3s,visibility .3s,box-shadow .2s}
+.to-top.show{opacity:1;visibility:visible;transform:none}
+.to-top:hover{box-shadow:0 14px 30px -8px rgba(0,160,227,.55);color:var(--blue)}
+.to-top svg{width:22px;height:22px}
+.logo .mark{width:25px;height:40px;flex:none;display:block}
+.logo .nav-logo{display:block;height:64px;width:auto;margin:-8px 0}
+.logo b{font-weight:800}.logo b span{font-weight:600;opacity:.8}
+nav ul{display:flex;gap:26px;list-style:none;padding:0}
+nav ul a{text-decoration:none;font-size:.82rem;font-weight:500;opacity:.8;transition:opacity .2s}
+nav ul a:hover,nav ul a.on{opacity:1}
+nav ul a.on{box-shadow:0 2px 0 var(--blue);padding-bottom:4px}
+nav .btn{padding:10px 18px;font-size:.9rem}
+
+/* ---------- hero ---------- */
+#hero{background:transparent;color:var(--ink);padding:0;position:relative;overflow:hidden}
+.hero{max-width:1200px;margin:0 auto;padding:96px 24px 64px;min-height:100vh;display:grid;grid-template-columns:1fr 1.02fr;gap:44px;align-items:center}
+.brand-logo{display:block;width:min(100%,380px);height:auto;margin:0 0 6px -8px;animation:pop .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pop{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
+h1{font-size:clamp(2rem,3.5vw,3.05rem);font-weight:800;margin:10px 0 16px}
+h1 em{color:var(--red)}
+#hero .lead{color:var(--mut);margin-top:0}
+#hero .btn.g{border-color:rgba(12,14,20,.25);color:var(--ink)}
+#hero .btn.g:hover{background:rgba(12,14,20,.05)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.pills{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.live{display:inline-flex;gap:10px;align-items:center;padding:8px 14px;border-radius:99px;background:#fff;border:1px solid var(--line);box-shadow:0 6px 18px -10px rgba(12,14,20,.25);font-size:.85rem;text-decoration:none;color:var(--ink)}
+.live .dot.off{background:var(--red);animation:none}.live.loc{transition:.2s}.live.loc:hover{background:var(--blued);border-color:var(--blued);color:#fff}
+.live.loc .ic{color:var(--red)}.live.loc:hover .ic{color:#fff}
+.mapbtn{position:absolute;left:18px;bottom:18px;z-index:2;box-shadow:0 12px 30px -10px rgba(0,0,0,.4)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--mint);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(61,220,151,.6)}70%,100%{box-shadow:0 0 0 10px transparent}}
+.modes{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:28px;font-size:.84rem;color:var(--mut)}
+.modes button{font:500 .84rem var(--body);color:var(--ink);background:#fff;border:1px solid var(--line);padding:7px 14px;border-radius:99px;cursor:pointer;transition:.2s}
+.modes button:hover{border-color:var(--blue)}
+.modes button[aria-pressed=true]{background:var(--blued);border-color:var(--blued);color:#fff}
+.facts{display:flex;gap:34px;flex-wrap:wrap;margin-top:32px;padding-top:22px;border-top:1px solid var(--line)}
+.facts b{display:block;font:800 1.6rem var(--head);letter-spacing:-.02em}
+.facts div:nth-child(1) b{color:var(--red)}.facts div:nth-child(2) b{color:var(--blued)}
+.facts span{font-size:.82rem;color:var(--mut)}
+.scene-wrap{position:relative;background:rgba(255,255,255,.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:30px;padding:18px;border:1px solid rgba(255,255,255,.9);box-shadow:0 40px 80px -34px rgba(0,121,174,.45),0 0 0 1px rgba(0,160,227,.12)}
+#scene{display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:1fr 1fr;gap:12px;aspect-ratio:7/5;transition:transform .25s ease-out;will-change:transform}
+#scene .ph{width:100%;height:100%;object-fit:cover;border-radius:20px;display:block;background:linear-gradient(135deg,#e6f4fc,#fde8e7)}
+#scene .a{grid-row:1/3;border-bottom-left-radius:60px;border-top-right-radius:60px}
+#scene .b{border-top-right-radius:50px}
+#scene .c{border-bottom-right-radius:50px}
+.facts span{text-transform:uppercase;letter-spacing:.06em}
+.chip{position:absolute;transition:transform .25s ease-out}
+.chip>div{text-transform:uppercase;letter-spacing:.05em;display:flex;gap:9px;align-items:center;background:rgba(255,255,255,.96);color:var(--ink);padding:9px 14px 9px 10px;border-radius:12px;font-size:.82rem;font-weight:600;box-shadow:0 14px 34px -10px rgba(0,0,0,.45);animation:bob 5s ease-in-out infinite}
+.chip .ic{width:20px;height:20px;color:var(--blue)}
+.chip:nth-child(2)>div{animation-delay:-1.2s}.chip:nth-child(3)>div{animation-delay:-2.4s}.chip:nth-child(4)>div{animation-delay:-3.6s}
+@keyframes bob{50%{transform:translateY(-7px)}}
+/* scene animation */
+.mode{opacity:0;transition:opacity .5s}
+#scene[data-mode=dev] .m-dev,#scene[data-mode=design] .m-design,#scene[data-mode=biz] .m-biz{opacity:1}
+.ln{transform-box:fill-box;transform-origin:left center;animation:type 7s ease-in-out infinite;animation-delay:calc(var(--i)*.3s)}
+@keyframes type{0%{transform:scaleX(0)}14%,86%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+.bar2{transform-box:fill-box;transform-origin:bottom;animation:grow 4.5s ease-in-out infinite;animation-delay:calc(var(--i)*.12s)}
+@keyframes grow{0%{transform:scaleY(.15)}30%,85%{transform:scaleY(1)}100%{transform:scaleY(.15)}}
+.trend{stroke-dasharray:300;animation:draw 4.5s ease-in-out infinite}
+@keyframes draw{0%{stroke-dashoffset:300}35%,85%{stroke-dashoffset:0}100%{stroke-dashoffset:300}}
+.fl{animation:bob 4s ease-in-out infinite}
+.blink{animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.steam{transform-box:fill-box;animation:steam 3s ease-in-out infinite}
+@keyframes steam{0%{opacity:0;transform:translateY(5px)}50%{opacity:.8}100%{opacity:0;transform:translateY(-9px)}}
+.speak{animation:speak 1.6s ease-in-out infinite}
+@keyframes speak{50%{stroke-opacity:.2}}
+
+/* ---------- about ---------- */
+.about-head{text-align:center;margin-bottom:56px}
+.about-head h2{font-size:clamp(2.4rem,5vw,3.6rem)}
+.about-head h2 em{color:var(--redd)}
+.about-head .bar{display:flex;justify-content:center;gap:6px;margin-top:18px}
+.about-head .bar i{display:block;height:5px;border-radius:9px;width:56px;background:var(--red)}
+.about-head .bar i+i{width:22px;background:var(--blue)}
+.about-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:72px;align-items:center}
+.collage{position:relative;display:grid;grid-template-columns:1fr 1.04fr;gap:12px;padding:0 0 22px 22px}
+.collage::before{content:"";position:absolute;left:0;bottom:0;width:56%;height:62%;border-radius:26px;background:repeating-linear-gradient(135deg,rgba(255,48,41,.16) 0 2px,transparent 2px 10px);z-index:0}
+.collage::after{content:"";position:absolute;right:-14px;top:-14px;width:42%;height:34%;border-radius:26px;border:3px solid var(--blue);opacity:.5;z-index:0}
+.tile{position:relative;z-index:1;border-radius:20px;overflow:hidden;box-shadow:0 26px 50px -26px rgba(12,14,20,.55);border:4px solid #fff;background:#fff}
+.tile svg{display:block;width:100%;height:100%}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.tile.a,.tile.c{aspect-ratio:4/3}
+.tile.b{grid-column:2;grid-row:1/3}
+.tile.c{grid-column:1;grid-row:2}
+.badge{position:absolute;z-index:2;left:-2px;bottom:-4px;display:flex;gap:12px;align-items:center;background:var(--navy);color:#fff;padding:14px 20px 14px 14px;border-radius:16px;box-shadow:0 24px 44px -16px rgba(12,14,20,.6);animation:bob 6s ease-in-out infinite}
+.badge .pin{width:42px;height:42px;border-radius:12px;background:var(--red);display:grid;place-items:center;flex:none}
+.badge .pin .ic{width:22px;height:22px;color:#fff}
+.badge b{display:block;font:700 .95rem var(--head);line-height:1.2}
+.badge small{font-size:.76rem;color:rgba(255,255,255,.68)}
+.about-copy h3{font-size:clamp(1.7rem,3vw,2.35rem);font-weight:800;line-height:1.15}
+.about-copy h3 em{font-style:normal;color:var(--blued)}
+.about-copy p{color:var(--mut);margin-top:18px;font-size:1.04rem;max-width:56ch}
+.ticks{list-style:none;padding:0;margin-top:26px;display:grid;gap:12px}
+.ticks li{display:flex;gap:14px;align-items:center;font:700 1.06rem var(--head);background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.9);border-radius:14px;padding:12px 16px;transition:transform .2s,box-shadow .2s}
+.ticks li:hover{transform:translateX(6px);box-shadow:0 16px 34px -20px rgba(0,121,174,.5)}
+.ticks .ck{width:30px;height:30px;border-radius:9px;background:var(--redd);color:#fff;display:grid;place-items:center;flex:none}
+.ticks li:nth-child(even) .ck{background:var(--blued)}
+.ticks .ck .ic{width:17px;height:17px;stroke-width:2.6}
+.about-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+
+/* ---------- spaces ---------- */
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:48px}
+.card{background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.9);border-radius:20px;padding:30px 28px;transition:transform .25s,box-shadow .25s,border-color .25s;box-shadow:0 1px 2px rgba(16,28,56,.04)}
+.card:hover{border-color:#a9ddf2;box-shadow:0 24px 50px -24px rgba(0,121,174,.35)}
+.ico{width:52px;height:52px;border-radius:14px;background:#e3f4fb;color:var(--blue);display:grid;place-items:center;margin-bottom:22px}
+.ico .ic{width:26px;height:26px}
+.card h3{font-size:1.3rem;font-weight:700;margin-bottom:8px}
+.card p{color:var(--mut);font-size:.96rem}
+.tag{display:inline-block;margin-top:18px;font-size:.7rem;letter-spacing:.12em;font-weight:600;color:var(--blued);background:#e3f4fb;padding:5px 10px;border-radius:6px}
+
+.card[data-space]{cursor:pointer;-webkit-tap-highlight-color:transparent}
+.card[data-space]:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.more{display:flex;align-items:center;gap:6px;margin-top:16px;font:700 .88rem var(--head);color:var(--redd)}
+.more .ic{width:16px;height:16px;transition:transform .2s}
+.card:hover .more .ic{transform:translateX(4px)}
+.card:hover .ico{background:var(--blue);color:#fff}
+.ico{transition:background .25s,color .25s}
+
+/* ---------- space details popup (photos + prices) ---------- */
+dialog.sp{margin:auto;border:0;padding:0;border-radius:24px;width:min(940px,calc(100% - 24px));max-height:calc(100vh - 24px);background:#fff;color:var(--ink);box-shadow:0 40px 90px -30px rgba(12,14,20,.6);overflow:auto;overscroll-behavior:contain}
+dialog.sp::backdrop{background:rgba(12,14,20,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+dialog.sp[open]{animation:spin .3s cubic-bezier(.2,.8,.2,1)}
+@keyframes spin{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+.sp-in{padding:34px 34px 30px;position:relative}
+.sp-x{position:absolute;top:16px;right:16px;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--ink);font:400 1.5rem/1 var(--body);cursor:pointer;display:grid;place-items:center;transition:.2s}
+.sp-x:hover{background:var(--redd);border-color:var(--redd);color:#fff}
+.sp-head{display:flex;gap:16px;align-items:center;margin-bottom:8px;padding-right:48px}
+.sp-head .ico{margin:0;flex:none}
+.sp-in h3{font-size:1.7rem;font-weight:800}
+.sp-in .sub{color:var(--mut);max-width:62ch;margin:4px 0 22px}
+.sp-in h4{font:700 .78rem var(--head);letter-spacing:.14em;text-transform:uppercase;color:var(--blued);margin:0 0 12px}
+.sp-gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-bottom:28px}
+.sp-gal figure{position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#fff1f0,#e8f6fd);border:1px dashed #b9d9ea}
+.sp-gal .ph{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;color:var(--blued);font:600 .8rem var(--body);text-align:center;padding:8px}
+.sp-gal .ph .ic{width:30px;height:30px;opacity:.8}
+.sp-gal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#fff}
+.sp-prices{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-bottom:26px}
+.sp-prices div{border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:linear-gradient(180deg,#fff,#f6fbfe)}
+.sp-prices small{display:block;color:var(--mut);font-size:.84rem}
+.sp-prices b{display:block;font:800 1.5rem var(--head);letter-spacing:-.02em;margin-top:2px}
+.sp-prices b.ask{font-size:1.05rem;color:var(--mut);font-weight:700;padding:5px 0}
+.sp-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.sp-cta span{color:var(--mut);font-size:.88rem}
+html.lock{overflow:hidden}
+@media(max-width:560px){.sp-in{padding:26px 18px 22px}.sp-in h3{font-size:1.35rem}}
+@media(prefers-reduced-motion:reduce){dialog.sp[open]{animation:none}}
+
+/* ---------- planner ---------- */
+#plan{background:transparent}
+.plan{display:grid;grid-template-columns:1.1fr .9fr;gap:22px;margin-top:48px}
+.panel{border:1px solid rgba(255,255,255,.9);border-radius:22px;padding:34px;background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 20px 50px -30px rgba(0,121,174,.35)}
+.panel.dk{background:var(--navy);color:#fff;border-color:var(--navy);display:flex;flex-direction:column;background-image:radial-gradient(400px 260px at 100% 0,rgba(0,160,227,.35),transparent 70%)}
+label.f{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin:0 0 10px;font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{padding:9px 16px;border-radius:10px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:.9rem;font-weight:500;transition:.2s}
+.chips label:hover{border-color:var(--blue2)}
+.chips input:checked+label{background:var(--blued);color:#fff;border-color:var(--blued)}
+.chips input:focus-visible+label{outline:2px solid var(--blue);outline-offset:2px}
+.big{font:800 3rem var(--head);line-height:1;letter-spacing:-.03em}
+.big small{font:500 1rem var(--body);color:var(--mut);letter-spacing:0}
+.range{width:100%;accent-color:var(--blue);margin:10px 0 4px}
+#floor{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin:18px 0 28px}
+#floor div{color:#c5cee4;transition:color .25s,transform .25s}
+#floor div svg{width:100%;height:auto;fill:transparent;transition:fill .25s}
+#floor div.on{color:var(--blue);transform:translateY(-2px)}
+#floor div.on svg{fill:rgba(0,160,227,.14)}
+.panel.dk .kicker{color:var(--mint)}
+#recT{font-size:1.75rem;font-weight:800;margin:4px 0 12px}
+#recP{color:rgba(255,255,255,.74)}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:26px}
+.note{margin-top:16px;font-size:.8rem;color:rgba(255,255,255,.5)}
+
+/* ---------- amenities (dark) ---------- */
+#utilities{background:transparent;color:var(--ink);position:relative;overflow:hidden}
+.dev{position:absolute;color:rgba(0,121,174,.12);animation:bob 7s ease-in-out infinite;pointer-events:none}
+.dev .ic{width:100%;height:100%;stroke-width:1.2}
+.amen{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;position:relative}
+.amen>div{background:rgba(255,255,255,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.9);border-radius:18px;padding:26px;transition:.25s;box-shadow:0 1px 2px rgba(16,28,56,.04)}
+.amen>div:hover{border-color:#a9ddf2;box-shadow:0 24px 50px -24px rgba(0,121,174,.35)}
+.amen .ic{color:var(--blued);width:28px;height:28px}
+.amen b{display:block;font:700 1.08rem var(--head);margin:16px 0 4px}
+.amen small{color:var(--mut);font-size:.92rem}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:20px;margin-top:64px;padding-top:44px;border-top:1px solid rgba(12,14,20,.12);position:relative}
+.stats b{font:800 3.2rem var(--head);letter-spacing:-.03em;display:block;line-height:1;color:var(--redd)}
+.stats>div:nth-child(even) b{color:var(--blued)}
+.stats span{color:var(--mut);font-size:.92rem}
+
+/* ---------- reviews ---------- */
+.voices{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:48px}
+.voices figure{background:rgba(255,255,255,.75);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.9);border-radius:20px;padding:34px;position:relative}
+.voices figure::before{content:"“";position:absolute;top:10px;right:26px;font:800 6rem var(--head);color:#ffe1df;line-height:1}
+.voices blockquote{font-size:1.12rem;line-height:1.55;position:relative}
+.voices figcaption{display:flex;gap:12px;align-items:center;margin-top:26px;font-weight:600;font-size:.95rem}
+.voices figcaption i{width:42px;height:42px;border-radius:50%;background:var(--redd);color:#fff;display:grid;place-items:center;font:700 .9rem var(--head);font-style:normal}
+.voices figcaption small{display:block;font-weight:400;color:var(--mut)}
+
+/* ---------- visit ---------- */
+#find{background:transparent}
+.find{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;margin-top:48px}
+.map{position:relative;border:1px solid var(--line);border-radius:22px;overflow:hidden;min-height:380px;background:#e9eefa}
+.map svg{width:100%;height:100%;display:block}
+.path{stroke-dasharray:8 9;animation:dash 1.2s linear infinite}
+@keyframes dash{to{stroke-dashoffset:-17}}
+.contact{border:1px solid rgba(255,255,255,.9);border-radius:22px;padding:30px;background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:flex;flex-direction:column}
+.contact a.line{display:flex;gap:14px;align-items:flex-start;text-decoration:none;padding:14px 0;border-bottom:1px solid var(--line);transition:color .2s}
+.contact a.line:hover{color:var(--blued)}
+.contact a.line .ic{color:var(--blue);margin-top:3px}
+.contact small{display:block;color:var(--mut);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+input.t,textarea.t{width:100%;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--ink);font:inherit;font-size:.95rem}
+input.t:focus,textarea.t:focus{outline:2px solid var(--blue2);border-color:transparent}
+#form{display:grid;gap:10px;margin-top:22px}
+
+footer{background:var(--navy);color:rgba(255,255,255,.66);padding:56px 0 34px;font-size:.9rem}
+footer .top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:28px;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.12)}
+footer .logo{color:#fff}
+.foot-logo{display:inline-block;margin-bottom:-6px}
+.foot-logo+p{margin-top:0}
+.foot-logo img{display:block;width:230px;max-width:100%;height:auto;filter:invert(1) hue-rotate(180deg);mix-blend-mode:screen}
+footer p{max-width:36ch;margin-top:14px}
+footer ul{list-style:none;padding:0;display:grid;gap:8px}
+footer ul a{text-decoration:none}footer ul a:hover{color:#fff}
+footer h4{font:700 .78rem var(--head);letter-spacing:.14em;text-transform:uppercase;color:#fff;margin-bottom:14px}
+footer .bot{padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem}
+
+/* ---------- responsive ---------- */
+@media(max-width:980px){
+  .hero{grid-template-columns:1fr;padding-top:88px;min-height:0;gap:36px}
+  .brand-logo{width:min(100%,440px)}
+  nav ul{display:none}
+  .about-grid{grid-template-columns:1fr;gap:48px}
+  .about-head{margin-bottom:40px}
+}
+@media(max-width:820px){
+  section{padding:44px 0}
+  .plan,.find{grid-template-columns:1fr}
+  .amen{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .panel{padding:26px}
+}
+@media(max-width:640px){
+  .chip{display:none}
+  .dev{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}.reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="logo-mark" viewBox="295 22 350 580"><ellipse cx="470" cy="145" rx="93" ry="86" fill="none" stroke="#ff3029" stroke-width="52"/><path id="lm-sh" fill="#ff3029" stroke="none" d="M304 361C304 320 350 262 398 240L470 254 542 240C590 262 637 320 637 361L583 361C575 330 540 280 470 278 400 280 365 330 357 361Z"/><ellipse cx="470" cy="381" rx="87" ry="80" fill="none" stroke="#00a0e3" stroke-width="50"/><path fill="#00a0e3" stroke="none" transform="translate(7 228)" d="M304 361C304 320 350 262 398 240L470 254 542 240C590 262 637 320 637 361L583 361C575 330 540 280 470 278 400 280 365 330 357 361Z"/></symbol>
+    <symbol id="i-mon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></symbol>
+    <symbol id="i-door" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="1.5"/><path d="M15 12h.01M3 21h18"/></symbol>
+    <symbol id="i-board" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="11" rx="2"/><path d="M12 15v5M8 20h8M7 12l3-3 3 2 4-4"/></symbol>
+    <symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".6"/></symbol>
+    <symbol id="i-mail"viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></symbol>
+    <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19.5" r=".8"/></symbol>
+    <symbol id="i-snow" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M4.9 4.9l14.2 14.2M19.1 4.9L4.9 19.1"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+    <symbol id="i-cup" viewBox="0 0 24 24"><path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10h2a2 2 0 0 1 0 4h-2M8 2v3M12 2v3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="10" rx="1.5"/><path d="M2 19h20"/></symbol>
+    <symbol id="i-kbd" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="10" rx="2"/><path d="M6 11h.01M10 11h.01M14 11h.01M18 11h.01M7 14h10"/></symbol>
+    <symbol id="i-mouse" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="5"/><path d="M12 3v6"/></symbol>
+    <symbol id="i-hp" viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  </defs>
+</svg>
+
+<div id="bar"></div>
+
+<nav class="top" id="nav">
+  <div class="in">
+    <a class="logo" href="#hero" aria-label="Co Works City home"><img class="nav-logo" src="https://coworkscity.com/wp-content/uploads/2021/01/10.png" alt="Co Works City" width="1157" height="731"></a>
+    <ul>
+      <li><a href="#hero" class="on">Home</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#spaces">Workspaces</a></li>
+      <li><a href="#plan">Plan</a></li>
+      <li><a href="#utilities">Amenities</a></li>
+      <li><a href="#voices">Reviews</a></li>
+      <li><a href="#find">Visit</a></li>
+    </ul>
+    <a class="btn p" href="#find">Book a visit</a>
+  </div>
+</nav>
+
+<main>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero">
+    <div>
+      <img class="brand-logo" src="https://coworkscity.com/wp-content/uploads/2021/01/10.png" alt="Co Works City — Shaping the future of work" width="1157" height="731" fetchpriority="high">
+      <div class="pills reveal">
+        <span class="live" id="status"><span class="dot"></span><span id="stx">Open</span> · Delhi time <b id="ist">--:--</b></span>
+        <a class="live loc" href="https://www.google.com/maps/search/?api=1&query=CoWorks+City+Bharthal+Dwarka+Sector+26+New+Delhi" target="_blank" rel="noopener"><svg class="ic" style="width:16px;height:16px"><use href="#i-pin"/></svg>Dwarka Sec 26 · Get directions</a>
+      </div>
+      <h1 class="reveal">Workspaces built for <em>serious work</em>.</h1>
+      <p class="lead reveal">Dedicated seats, private cabins, meeting rooms and a business address in Dwarka Sector 26. Opposite the International Convention Center, close to the Sector 25 metro.</p>
+      <div class="cta reveal">
+        <a class="btn p" href="#plan">Plan your workspace <svg class="ic" style="width:18px;height:18px"><use href="#i-arrow"/></svg></a>
+        <a class="btn g" href="#spaces">Explore workspaces</a>
+      </div>
+      
+      <div class="facts reveal">
+        <div><b>9:30–7:30</b><span>Daily hours</span></div>
+        <div><b>556+</b><span>Seating capacity</span></div>
+        <div><b>200+</b><span>Happy customers</span></div>
+      </div>
+    </div>
+
+    <div class="scene-wrap reveal" id="sceneWrap">
+      <div id="scene" data-mode="photos" role="group" aria-label="Photos of the Co Works City workspace">
+        <img class="ph a" src="https://coworkscity.com/wp-content/uploads/2023/08/works-space.jpg" alt="Open workspace at Co Works City" onerror="this.remove()">
+        <img class="ph b" src="https://coworkscity.com/wp-content/uploads/2023/08/Space-1.jpg" alt="Desks at Co Works City" onerror="this.remove()">
+        <img class="ph c" src="https://coworkscity.com/wp-content/uploads/2023/08/Space-2.jpg" alt="Seating at Co Works City" onerror="this.remove()">
+      </div>
+
+      <div class="chip" data-d="26" style="top:3%;left:-2%"><div><svg class="ic"><use href="#i-clock"/></svg>9:30 am – 7:30 pm</div></div>
+      <div class="chip" data-d="-20" style="top:15%;right:-2%"><div><svg class="ic"><use href="#i-wifi"/></svg>Fast Wi-Fi</div></div>
+      <div class="chip" data-d="22" style="bottom:-1%;left:6%"><div><svg class="ic"><use href="#i-bolt"/></svg>Power back-up</div></div>
+      <div class="chip" data-d="-28" style="bottom:-1%;right:24%"><div><svg class="ic"><use href="#i-board"/></svg>Meeting rooms</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="about-head">
+      <h2 class="reveal">About <em>Us</em></h2>
+      <div class="bar reveal" aria-hidden="true"><i></i><i></i></div>
+    </div>
+    <div class="about-grid">
+      <div class="collage reveal">
+        <!-- A: desk close-up -->
+        <div class="tile a">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+            <defs><linearGradient id="aw" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef2f7"/><stop offset="1" stop-color="#d9e0ea"/></linearGradient></defs>
+            <rect width="400" height="300" fill="url(#aw)"/>
+            <rect y="176" width="400" height="124" fill="#b9793a"/>
+            <path d="M0 196H400M0 226H400M0 262H400" stroke="#9c6128" stroke-width="2" opacity=".5"/>
+            <path d="M120 176H400V190H140Z" fill="#c98b4a" opacity=".6"/>
+            <!-- laptop -->
+            <path d="M178 70L330 58 346 160 196 176Z" fill="#2a2f3d"/>
+            <path d="M188 80L322 69 335 150 202 164Z" fill="#0c0e14"/>
+            <path d="M200 100L300 92M204 118L312 108M208 136L320 124" stroke="#4cc3f2" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+            <path d="M160 190L350 172 372 190 182 212Z" fill="#c9cfdb"/>
+            <path d="M174 192L350 176" stroke="#8a93a6" stroke-width="3" stroke-dasharray="4 4"/>
+            <!-- pen cup -->
+            <rect x="46" y="96" width="14" height="70" rx="3" fill="#00a0e3" transform="rotate(-10 53 166)"/>
+            <rect x="64" y="84" width="12" height="80" rx="3" fill="#ff3029" transform="rotate(-3 70 166)"/>
+            <rect x="82" y="92" width="12" height="74" rx="3" fill="#f5f5f5" transform="rotate(6 88 166)"/>
+            <rect x="98" y="104" width="12" height="62" rx="3" fill="#0c0e14" transform="rotate(14 104 166)"/>
+            <path d="M92 90L112 40M98 92L120 46" stroke="#c4cad6" stroke-width="5" stroke-linecap="round"/>
+            <rect x="36" y="128" width="88" height="132" rx="8" fill="#c68a4d"/>
+            <path d="M50 134V256M76 130V258M100 134V254" stroke="#9c6128" stroke-width="3" opacity=".55"/>
+            <rect x="36" y="128" width="88" height="10" rx="5" fill="#a9692a"/>
+            <!-- mug -->
+            <path d="M150 218h58v26a22 22 0 0 1-22 22h-14a22 22 0 0 1-22-22z" fill="#fff"/>
+            <path d="M208 226h8a12 12 0 0 1 0 24h-8" fill="none" stroke="#fff" stroke-width="7"/>
+            <ellipse cx="179" cy="218" rx="29" ry="6" fill="#e9edf3"/>
+            <ellipse cx="179" cy="219" rx="23" ry="4" fill="#5b3a1e"/>
+          </svg>
+          <img src="https://coworkscity.com/wp-content/uploads/2023/08/works-space.jpg" alt="Workspace at Co Works City" loading="lazy" onerror="this.remove()">
+        </div>
+        <!-- B: tall, person at laptop -->
+        <div class="tile b">
+          <svg viewBox="0 0 360 520" preserveAspectRatio="xMidYMid slice">
+            <defs><linearGradient id="bw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c2230"/><stop offset="1" stop-color="#0c0e14"/></linearGradient></defs>
+            <rect width="360" height="520" fill="url(#bw)"/>
+            <rect x="0" width="70" height="330" fill="#e8dfd2"/>
+            <rect x="70" width="14" height="330" fill="#9aa3b2"/>
+            <rect x="96" y="0" width="250" height="330" fill="#243049" opacity=".6"/>
+            <path d="M96 150L200 90 330 150V330H96Z" fill="#cfd8e6" opacity=".22"/>
+            <!-- plant -->
+            <path d="M24 0C20 40 38 70 24 112M44 0C60 36 44 72 56 108" stroke="#2c6b3f" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <g fill="#2f8a4f"><ellipse cx="20" cy="36" rx="14" ry="7" transform="rotate(-30 20 36)"/><ellipse cx="40" cy="62" rx="14" ry="7" transform="rotate(30 40 62)"/><ellipse cx="24" cy="92" rx="14" ry="7" transform="rotate(-25 24 92)"/><ellipse cx="54" cy="104" rx="13" ry="6" transform="rotate(35 54 104)"/></g>
+            <!-- person -->
+            <path d="M200 300C200 250 240 228 290 228S360 250 360 300V420H200Z" fill="#26313f"/>
+            <path d="M232 240L290 228 340 240 360 300V330H226Z" fill="#2c3a4c"/>
+            <g stroke="#0c0e14" stroke-width="3" opacity=".7"><path d="M232 250V420M258 240V420M284 236V420M310 238V420M336 244V420"/><path d="M210 280H360M210 310H360M210 340H360M210 370H360"/></g>
+            <circle cx="288" cy="170" r="38" fill="#e0a77f"/>
+            <path d="M252 158C254 120 322 118 326 158L342 164C336 138 310 112 288 112S240 136 236 164Z" fill="#d6b682"/>
+            <path d="M246 156H338L350 168H238Z" fill="#c9a56a"/>
+            <path d="M262 190C270 208 306 208 314 190C312 200 300 214 288 214S266 204 262 190Z" fill="#6b4a33"/>
+            <circle cx="276" cy="178" r="3" fill="#3a2a1f"/><circle cx="298" cy="178" r="3" fill="#3a2a1f"/>
+            <!-- table -->
+            <path d="M0 400H360V430H0Z" fill="#d49a52"/>
+            <path d="M0 430H360V520H0Z" fill="#a9692a"/>
+            <path d="M0 450H360M0 484H360" stroke="#8a5420" stroke-width="2" opacity=".5"/>
+            <!-- laptop -->
+            <path d="M44 300L210 286 214 392 38 404Z" fill="#8c7a6b"/>
+            <path d="M54 308L202 296 205 384 50 394Z" fill="#6b5a4d"/>
+            <circle cx="128" cy="344" r="9" fill="#c9bcae"/>
+            <path d="M24 404L226 392 236 408H18Z" fill="#a8998a"/>
+            <!-- cup -->
+            <path d="M246 360h46v16a18 18 0 0 1-18 18h-10a18 18 0 0 1-18-18z" fill="#fff" transform="translate(0 -40)"/>
+            <path d="M292 326h6a9 9 0 0 1 0 18h-6" fill="none" stroke="#fff" stroke-width="5"/>
+            <ellipse cx="270" cy="404" rx="40" ry="7" fill="#e9edf3"/>
+            <rect x="52" y="406" width="64" height="12" rx="6" fill="#ff7a1a"/>
+          </svg>
+          <img src="https://coworkscity.com/wp-content/uploads/2023/08/Space-1.jpg" alt="Inside Co Works City" loading="lazy" onerror="this.remove()">
+        </div>
+        <!-- C: person in teal room -->
+        <div class="tile c">
+          <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice">
+            <defs><linearGradient id="cw" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0f6470"/><stop offset="1" stop-color="#0a2f3a"/></linearGradient></defs>
+            <rect width="400" height="300" fill="url(#cw)"/>
+            <rect x="238" width="10" height="300" fill="#1a8a99" opacity=".5"/>
+            <circle cx="210" cy="30" r="5" fill="#4cc3f2" opacity=".8"/><circle cx="332" cy="50" r="5" fill="#4cc3f2" opacity=".8"/><circle cx="360" cy="22" r="4" fill="#4cc3f2" opacity=".5"/>
+            <path d="M40 300C40 236 92 200 152 200S264 236 264 300Z" fill="#1a2347"/>
+            <rect x="124" y="180" width="56" height="34" rx="14" fill="#c98f66"/>
+            <circle cx="152" cy="140" r="46" fill="#e0a77f"/>
+            <path d="M106 140C100 90 140 78 168 84 196 88 204 116 198 142 190 124 176 116 160 114 138 112 116 118 106 140Z" fill="#4a3322"/>
+            <circle cx="118" cy="80" r="14" fill="#4a3322"/><circle cx="146" cy="68" r="15" fill="#4a3322"/><circle cx="176" cy="74" r="14" fill="#4a3322"/>
+            <path d="M126 140q10-6 20 0M164 140q10-6 20 0" stroke="#3a2a1f" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M138 172q16 8 32 0" stroke="#7a4a35" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M200 292L262 238 392 252 400 300Z" fill="#f0b48e"/>
+            <path d="M262 238L392 252" stroke="#fff" stroke-width="3" opacity=".6"/>
+          </svg>
+          <img src="https://coworkscity.com/wp-content/uploads/2023/08/Space-2.jpg" alt="Members working at Co Works City" loading="lazy" onerror="this.remove()">
+        </div>
+        <div class="badge">
+          <div class="pin"><svg class="ic"><use href="#i-pin"/></svg></div>
+          <div><b>Dwarka Sector 26</b><small>Opp. International Convention Center</small></div>
+        </div>
+      </div>
+      <div class="about-copy">
+        <span class="kicker reveal">Who we are</span>
+        <h3 class="reveal">Take the first step to <em>success</em> by working from an office.</h3>
+        <p class="reveal">Co Works City provides a hassle-free environment with abundant amenities, making it the go-to destination for those looking for a peaceful and productive workspace in Dwarka, New Delhi.</p>
+        <ul class="ticks">
+          <li class="reveal"><span class="ck"><svg class="ic"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>A true coworking space.</li>
+          <li class="reveal"><span class="ck"><svg class="ic"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Most affordable plans for you.</li>
+          <li class="reveal"><span class="ck"><svg class="ic"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Extremely well-connected location.</li>
+          <li class="reveal"><span class="ck"><svg class="ic"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Power back-up, fast Wi-Fi and meeting rooms.</li>
+        </ul>
+        <div class="about-cta reveal">
+          <a class="btn p" href="#plan">Plan your workspace <svg class="ic"><use href="#i-arrow"/></svg></a>
+          <a class="btn o" href="#find">Visit us</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPACES -->
+<section id="spaces">
+  <div class="wrap">
+    <span class="kicker reveal">Workspaces</span>
+    <h2 class="reveal">A workspace for every <em>kind of team</em>.</h2>
+    <p class="lead reveal">Start with what you need today and move to a different setup as your team grows.</p>
+    <div class="grid4">
+      <article class="card reveal" data-space="seat" role="button" tabindex="0" aria-haspopup="dialog"><div class="ico"><svg class="ic"><use href="#i-mon"/></svg></div><h3>Dedicated Seat</h3><p>A desk that's always yours, preferably the one you like best. Settle in, leave your things and return to it tomorrow.</p><span class="tag">DEDICATED SEAT</span><span class="more">View photos &amp; prices <svg class="ic"><use href="#i-arrow"/></svg></span></article>
+      <article class="card reveal" data-space="cabin" role="button" tabindex="0" aria-haspopup="dialog"><div class="ico"><svg class="ic"><use href="#i-door"/></svg></div><h3>Private Cabin</h3><p>The feeling of a private room inside a shared office. A door, focus and your team's own rhythm.</p><span class="tag">PRIVATE CABIN</span><span class="more">View photos &amp; prices <svg class="ic"><use href="#i-arrow"/></svg></span></article>
+      <article class="card reveal" data-space="meeting" role="button" tabindex="0" aria-haspopup="dialog"><div class="ico"><svg class="ic"><use href="#i-board"/></svg></div><h3>Meeting Room</h3><p>Audio-visual setup, whiteboards, tea and coffee, and fast Wi-Fi. For pitches, client meetings and brainstorms.</p><span class="tag">MEETING ROOM</span><span class="more">View photos &amp; prices <svg class="ic"><use href="#i-arrow"/></svg></span></article>
+      <article class="card reveal" data-space="virtual" role="button" tabindex="0" aria-haspopup="dialog"><div class="ico"><svg class="ic"><use href="#i-mail"/></svg></div><h3>Virtual Office</h3><p>A credible Delhi address for your business, without the cost of keeping a physical office.</p><span class="tag">VIRTUAL OFFICE</span><span class="more">View photos &amp; prices <svg class="ic"><use href="#i-arrow"/></svg></span></article>
+    </div>
+  </div>
+</section>
+
+<!-- Photos + prices popup (filled from SPACES in the script) -->
+<dialog class="sp" id="sp" aria-labelledby="spT">
+  <div class="sp-in">
+    <button type="button" class="sp-x" id="spX" aria-label="Close">&times;</button>
+    <div class="sp-head"><div class="ico" id="spI"></div><h3 id="spT"></h3></div>
+    <p class="sub" id="spP"></p>
+    <h4>Photos</h4>
+    <div class="sp-gal" id="spG"></div>
+    <h4>Prices</h4>
+    <div class="sp-prices" id="spR"></div>
+    <div class="sp-cta"><a class="btn p" id="spW" target="_blank" rel="noopener">Ask on WhatsApp</a><span>Tell us your team size and we'll confirm availability.</span></div>
+  </div>
+</dialog>
+
+<!-- PLANNER -->
+<section id="plan">
+  <div class="wrap">
+    <span class="kicker reveal">Plan your workspace</span>
+    <h2 class="reveal">Tell us who's coming.<br>We'll <em>size the floor</em>.</h2>
+    <div class="plan">
+      <div class="panel reveal">
+        <label class="f">What do you need?</label>
+        <div class="chips">
+          <input type="radio" name="need" id="n1" value="seat" checked><label for="n1">Dedicated seats</label>
+          <input type="radio" name="need" id="n2" value="cabin"><label for="n2">Private cabin</label>
+          <input type="radio" name="need" id="n3" value="meet"><label for="n3">Meeting room</label>
+          <input type="radio" name="need" id="n4" value="virtual"><label for="n4">Virtual office</label>
+        </div>
+        <label class="f">Team size</label>
+        <div class="big"><span id="size">4</span> <small>people</small></div>
+        <input class="range" id="people" type="range" min="1" max="50" value="4" aria-label="Team size">
+        <div id="floor" aria-hidden="true"></div>
+        <label class="f">For how long?</label>
+        <div class="chips" style="margin-bottom:0">
+          <input type="radio" name="dur" id="d1" value="a day"><label for="d1">A day</label>
+          <input type="radio" name="dur" id="d2" value="1 month" checked><label for="d2">1 month</label>
+          <input type="radio" name="dur" id="d3" value="6 months"><label for="d3">6 months</label>
+          <input type="radio" name="dur" id="d4" value="12 months"><label for="d4">12 months</label>
+        </div>
+      </div>
+      <div class="panel dk reveal">
+        <span class="kicker">Our suggestion</span>
+        <h3 id="recT"></h3>
+        <p id="recP"></p>
+        <div class="row">
+          <a class="btn p" id="wa" target="_blank" rel="noopener">Send on WhatsApp</a>
+          <a class="btn g" id="ml">Email instead</a>
+        </div>
+        <p class="note">Rates are shared by the team after you send this. No sign-up, no forms.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMENITIES -->
+<section id="utilities">
+  <div class="dev" style="width:120px;height:120px;top:8%;right:6%"><svg class="ic"><use href="#i-laptop"/></svg></div>
+  <div class="dev" style="width:90px;height:90px;top:46%;left:2%;animation-delay:-2s"><svg class="ic"><use href="#i-kbd"/></svg></div>
+  <div class="dev" style="width:70px;height:70px;bottom:10%;right:12%;animation-delay:-4s"><svg class="ic"><use href="#i-hp"/></svg></div>
+  <div class="dev" style="width:60px;height:60px;top:30%;right:30%;animation-delay:-3s"><svg class="ic"><use href="#i-mouse"/></svg></div>
+  <div class="wrap">
+    <span class="kicker reveal">Amenities</span>
+    <h2 class="reveal">Everything that keeps<br>the work <em>running</em>.</h2>
+    <p class="lead reveal">The basics, done properly, so your team never has to think about them.</p>
+    <div class="amen">
+      <div class="reveal"><svg class="ic"><use href="#i-bolt"/></svg><b>Power back-up</b><small>Work doesn't stop when the grid does.</small></div>
+      <div class="reveal"><svg class="ic"><use href="#i-wifi"/></svg><b>High-speed internet</b><small>Built for video calls and heavy uploads.</small></div>
+      <div class="reveal"><svg class="ic"><use href="#i-snow"/></svg><b>Centralised A/C</b><small>Comfortable at 3 pm in June.</small></div>
+      <div class="reveal"><svg class="ic"><use href="#i-shield"/></svg><b>CCTV security</b><small>Round-the-clock eyes on the building.</small></div>
+      <div class="reveal"><svg class="ic"><use href="#i-clock"/></svg><b>Fixed hours</b><small>Open 9:30 am to 7:30 pm, so the whole team can plan around it.</small></div>
+      <div class="reveal"><svg class="ic"><use href="#i-cup"/></svg><b>Tea &amp; coffee</b><small>Fuel for the long stretches.</small></div>
+    </div>
+    <div class="stats">
+      <div class="reveal"><b data-n="200">0</b><span>happy customers</span></div>
+      <div class="reveal"><b data-n="20">0</b><span>companies</span></div>
+      <div class="reveal"><b data-n="50">0</b><span>team members</span></div>
+      <div class="reveal"><b data-n="556">0</b><span>seating capacity</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="voices">
+  <div class="wrap">
+    <span class="kicker reveal">Reviews</span>
+    <h2 class="reveal">What our members <em>say</em>.</h2>
+    <div class="voices">
+      <figure class="reveal"><blockquote>A very enthusiastic place to work. Better connectivity to metro and road vehicles, and the chairs are very comfortable.</blockquote><figcaption><i>RG</i><span>Rakesh Gupta<small>Member</small></span></figcaption></figure>
+      <figure class="reveal"><blockquote>One of the best coworking spaces you'll find for peace while working in and around west Delhi. Friendly staff.</blockquote><figcaption><i>NS</i><span>Nisha Sharma<small>Member</small></span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT -->
+<section id="find">
+  <div class="wrap">
+    <span class="kicker reveal">Visit us</span>
+    <h2 class="reveal" style="text-transform:uppercase">Right opposite <em>IICC</em>, Dwarka.</h2>
+    <div class="find">
+      <div class="map reveal">
+        <a class="btn p mapbtn" href="https://www.google.com/maps/search/?api=1&query=CoWorks+City+Bharthal+Dwarka+Sector+26+New+Delhi" target="_blank" rel="noopener"><svg class="ic" style="width:18px;height:18px"><use href="#i-pin"/></svg>Open in Google Maps</a>
+        <svg style="text-transform:uppercase" viewBox="0 0 600 400" role="img" aria-label="Stylised route from Dwarka Sector 25 metro to Co Works City">
+          <defs><pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#d5deef"/></pattern></defs>
+          <rect width="600" height="400" fill="url(#g)"/>
+          <path id="expw" d="M0 100 C150 120 300 70 600 110" stroke="#fff" stroke-width="22" fill="none"/>
+          <path d="M0 100 C150 120 300 70 600 110" stroke="#cfd8ee" stroke-width="1.5" stroke-dasharray="10 8" fill="none"/>
+          <text font-size="11" fill="#3b4a73" font-weight="700" font-family="Inter,sans-serif" letter-spacing="1.5"><textPath href="#expw" startOffset="50%" text-anchor="middle" dy="4">DWARKA EXPRESSWAY</textPath></text>
+          <path d="M200 400 C230 320 330 300 350 140 S380 120 380 100" stroke="#fff" stroke-width="12" fill="none"/>
+          <rect x="40" y="170" width="110" height="64" rx="12" fill="#d9ecdf"/>
+          <rect x="360" y="165" width="160" height="90" rx="14" fill="#cfdcfb" stroke="#9db4f3" stroke-dasharray="4 6"/>
+          <text x="440" y="355" text-anchor="middle" fill="#3b4a73" font-size="12" font-family="Inter,sans-serif" font-weight="600">Yashobhoomi (IICC)</text>
+          <rect x="355" y="281" width="50" height="22" rx="11" fill="#fff" stroke="#00a0e3" stroke-width="1.5"/>
+          <text x="380" y="296" text-anchor="middle" fill="#0079ae" font-size="12" font-weight="800" font-family="Manrope,sans-serif">100m</text>
+          <path d="M70 52 C150 40 230 56 300 70" stroke="#ff3029" stroke-width="2.5" stroke-dasharray="3 7" stroke-linecap="round" fill="none"/>
+          <text x="22" y="40" fill="#e5231c" font-size="13" font-weight="800" font-family="Inter,sans-serif">&#9992; IGI Airport</text>
+          <text x="22" y="56" fill="#5b6785" font-size="11" font-family="Inter,sans-serif">via Dwarka Expressway</text>
+          <path class="path" d="M300 290 C340 290 400 270 450 225" stroke="#00a0e3" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <circle cx="300" cy="290" r="12" fill="#fff" stroke="#0f1a30" stroke-width="4"/>
+          <text x="300" y="322" fill="#0f1a30" font-size="13" text-anchor="middle" font-weight="700" font-family="Inter,sans-serif">Dwarka Sec 25 Metro</text>
+          <g transform="translate(450 225)"><circle r="24" fill="rgba(0,160,227,.2)"><animate attributeName="r" values="16;32;16" dur="2.4s" repeatCount="indefinite"/></circle><circle r="11" fill="#00a0e3" stroke="#fff" stroke-width="3"/></g>
+          <text x="450" y="278" fill="#0f1a30" font-size="14" text-anchor="middle" font-weight="800" font-family="Manrope,sans-serif">Co Works City</text>
+          <g transform="translate(392 190)"><circle r="24" fill="rgba(255,48,41,.2)"><animate attributeName="r" values="16;32;16" dur="2.4s" repeatCount="indefinite"/></circle><circle r="11" fill="#ff3029" stroke="#fff" stroke-width="3"/></g>
+          <text x="412" y="195" fill="#e5231c" font-size="12" font-weight="800" font-family="Manrope,sans-serif">We Share Space</text>
+        </svg>
+      </div>
+      <div class="contact reveal">
+        <a class="line" href="https://www.google.com/maps/search/?api=1&query=CoWorks+City+Bharthal+Dwarka+Sector+26+New+Delhi" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pin"/></svg><span><small>Address</small>497 Bharthal, Dwarka Sector 26, opposite International Convention Center, New Delhi 110077</span></a>
+        <a class="line" href="tel:+919958614447"><svg class="ic"><use href="#i-phone"/></svg><span><small>Call</small>+91 99586 14447</span></a>
+        <a class="line" href="mailto:contact@coworkscity.com"><svg class="ic"><use href="#i-mail"/></svg><span><small>Email</small>contact@coworkscity.com</span></a>
+        <a class="line" href="https://www.instagram.com/coworks_city/" target="_blank" rel="noopener"><svg class="ic"><use href="#i-insta"/></svg><span><small>Follow us on Instagram</small>@coworks_city</span></a>
+        <form id="form">
+          <input class="t" id="fn" placeholder="Your name" required aria-label="Your name">
+          <textarea class="t" id="fm" rows="2" placeholder="What are you looking for?" required aria-label="What are you looking for?"></textarea>
+          <button class="btn p" type="submit" style="justify-content:center">Book a site visit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <a class="foot-logo" href="#hero" aria-label="Co Works City home"><img src="https://coworkscity.com/wp-content/uploads/2021/01/10.png" alt="Co Works City — Shaping the future of work" width="1157" height="731" loading="lazy"></a>
+        <p>Shaping the future of work, from Dwarka Sector 26, New Delhi.</p>
+      </div>
+      <div><h4>Workspaces</h4><ul><li><a href="#spaces">Dedicated seat</a></li><li><a href="#spaces">Private cabin</a></li><li><a href="#spaces">Meeting room</a></li><li><a href="#spaces">Virtual office</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li><a href="tel:+919958614447">+91 99586 14447</a></li><li><a href="mailto:contact@coworkscity.com">contact@coworkscity.com</a></li><li><a href="https://www.google.com/maps/search/?api=1&query=CoWorks+City+Bharthal+Dwarka+Sector+26+New+Delhi" target="_blank" rel="noopener">497 Bharthal, Dwarka Sector 26,<br>Opposite International Convention Center,<br>New Delhi 110077</a></li></ul></div>
+    </div>
+    <div class="bot"><span>© 2026 Co Works City. All rights reserved.</span><span>Open 9:30 am – 7:30 pm</span></div>
+  </div>
+</footer>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* ---- nav, progress, active link ---- */
+const nav=$('#nav'),bar=$('#bar');
+function onScroll(){
+  const max=document.documentElement.scrollHeight-innerHeight;
+  bar.style.width=(max>0?scrollY/max*100:0)+'%';
+  nav.classList.toggle('solid',scrollY>40);
+  const tt=document.getElementById('toTop');if(tt)tt.classList.toggle('show',scrollY>500);
+}
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+const links=$$('nav ul a');
+const spy=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting)links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+e.target.id));
+}),{rootMargin:'-45% 0px -50% 0px'});
+$$('main section[id]').forEach(s=>spy.observe(s));
+
+/* ---- reveal + counters ---- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  e.target.classList.add('in');
+  const n=e.target.querySelector('[data-n]');
+  if(n&&!n.done){n.done=1;const T=+n.dataset.n,t0=performance.now();
+    (function f(t){const k=Math.min(1,(t-t0)/1600);n.textContent=Math.round(T*(1-Math.pow(1-k,3)))+'+';if(k<1)requestAnimationFrame(f)})(t0)}
+  io.unobserve(e.target);
+}),{threshold:.15});
+$$('.reveal').forEach(e=>io.observe(e));
+
+/* ---- hero workstation: pointer depth + role switch ---- */
+const scene=$('#scene'),wrap=$('#sceneWrap'),chips=$$('.chip');
+if(!reduce){
+  $('#hero').addEventListener('pointermove',e=>{
+    const x=e.clientX/innerWidth-.5,y=e.clientY/innerHeight-.5;
+    scene.style.transform=`perspective(1100px) rotateY(${x*7}deg) rotateX(${-y*5}deg)`;
+    chips.forEach(c=>{const d=+c.dataset.d;c.style.transform=`translate(${x*d}px,${y*d}px)`});
+  });
+  $('#hero').addEventListener('pointerleave',()=>{scene.style.transform='';chips.forEach(c=>c.style.transform='')});
+}
+const modes=['dev','design','biz'],btns=$$('.modes button');
+function setMode(m){scene.dataset.mode=m;btns.forEach(b=>b.setAttribute('aria-pressed',b.dataset.m===m))}
+let mi=0,auto=reduce?null:setInterval(()=>{mi=(mi+1)%3;setMode(modes[mi])},6500);
+btns.forEach(b=>b.addEventListener('click',()=>{clearInterval(auto);setMode(b.dataset.m)}));
+
+/* ---- card tilt ---- */
+if(!reduce)$$('.card').forEach(c=>{
+  c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    c.style.transform=`perspective(800px) rotateY(${x*6}deg) rotateX(${-y*6}deg) translateY(-4px)`});
+  c.addEventListener('pointerleave',()=>c.style.transform='');
+});
+
+/* ---- space popups: photos + prices ----
+   TO ADD PHOTOS: save image files in the "images" folder next to index.html using the names below
+   (or add more names to a photos list). Missing files simply show a "Photo coming soon" tile.
+   TO ADD PRICES: type the price in the second quote of each row, e.g. ['Per seat · monthly','₹ 6,500'].
+   Leave it '' to show "Ask us for the price". */
+const SPACES={
+  seat:{photos:['images/dedicated-seat-1.jpg','images/dedicated-seat-2.jpg','images/dedicated-seat-3.jpg'],
+    prices:[['Per seat · monthly',''],['Per seat · yearly','']]},
+  cabin:{photos:['images/private-cabin-1.jpg','images/private-cabin-2.jpg','images/private-cabin-3.jpg'],
+    prices:[['Per cabin · monthly',''],['Per cabin · yearly','']]},
+  meeting:{photos:['images/meeting-room-1.jpg','images/meeting-room-2.jpg','images/meeting-room-3.jpg'],
+    prices:[['Per hour',''],['Half day',''],['Full day','']]},
+  virtual:{photos:['images/virtual-office-1.jpg','images/virtual-office-2.jpg','images/virtual-office-3.jpg'],
+    prices:[['Per month',''],['Per year','']]}
+};
+const dlg=$('#sp');
+function showSpace(card){
+  const s=SPACES[card.dataset.space],name=card.querySelector('h3').textContent;
+  $('#spT').textContent=name;
+  $('#spP').textContent=card.querySelector('p').textContent;
+  $('#spI').innerHTML=card.querySelector('.ico').innerHTML;
+  const g=$('#spG');g.textContent='';
+  s.photos.forEach((src,i)=>{
+    const f=document.createElement('figure');
+    f.innerHTML='<div class="ph"><svg class="ic"><use href="#i-laptop"/></svg>Photo coming soon</div>';
+    const im=document.createElement('img');im.loading='lazy';im.alt=name+' photo '+(i+1);im.src=src;
+    im.onerror=()=>im.remove();f.appendChild(im);g.appendChild(f);
+  });
+  const r=$('#spR');r.textContent='';
+  s.prices.forEach(([l,v])=>{
+    const d=document.createElement('div'),sm=document.createElement('small'),b=document.createElement('b');
+    sm.textContent=l;b.textContent=v||'Ask us for the price';if(!v)b.className='ask';
+    d.append(sm,b);r.appendChild(d);
+  });
+  $('#spW').href='https://wa.me/919958614447?text='+encodeURIComponent(`Hi Co Works City! I'd like the price and availability for: ${name}.`);
+  dlg.showModal();document.documentElement.classList.add('lock');
+}
+$$('.card[data-space]').forEach(c=>{
+  c.addEventListener('click',()=>showSpace(c));
+  c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showSpace(c)}});
+});
+$('#spX').addEventListener('click',()=>dlg.close());
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+dlg.addEventListener('close',()=>document.documentElement.classList.remove('lock'));
+
+/* ---- planner ---- */
+const fl=$('#floor');
+for(let i=0;i<50;i++){const d=document.createElement('div');d.innerHTML='<svg class="ic" viewBox="0 0 24 24"><use href="#i-mon"/></svg>';fl.appendChild(d)}
+function plan(){
+  const n=+$('#people').value,need=document.querySelector('[name=need]:checked').value,dur=document.querySelector('[name=dur]:checked').value;
+  $('#size').textContent=n;[...fl.children].forEach((d,i)=>d.classList.toggle('on',i<n));
+  let T,P;
+  if(need==='virtual'){T='Virtual office';P='A professional Delhi business address for your registration and mail, with no desk to maintain. You can upgrade to a seat whenever you need to be on site.'}
+  else if(need==='meet'){T=n>12?'Meeting room, large format':'Meeting room';P=`Meeting room for ${n} with audio-visual setup, whiteboards, tea/coffee and fast Wi-Fi. ${n>12?'For this headcount we will confirm the best-sized room for you.':''}`}
+  else if(need==='cabin'||n>=4){T=n>14?'Cabin suite':'Private cabin';P=`A lockable private space for your team of ${n}, in the middle of a shared community, so you get privacy without isolation.`}
+  else{T=n===1?'Your own dedicated seat':`${n} dedicated seats, side by side`;P='Reserved seats that are always yours, chosen where you like. Add a private cabin later if the team grows.'}
+  $('#recT').textContent=T;$('#recP').textContent=P;
+  const msg=`Hi Co Works City! I'd like to know about: ${T} for ${n} ${n>1?'people':'person'}, for ${dur}. Could you share rates and availability?`;
+  $('#wa').href='https://wa.me/919958614447?text='+encodeURIComponent(msg);
+  $('#ml').href='mailto:contact@coworkscity.com?subject='+encodeURIComponent('Workspace enquiry: '+T)+'&body='+encodeURIComponent(msg);
+}
+$('#plan').addEventListener('input',plan);plan();
+
+/* ---- contact ---- */
+$('#form').addEventListener('submit',e=>{e.preventDefault();
+  const m=`Hi, I'm ${$('#fn').value}. ${$('#fm').value} I'd like to book a site visit.`;
+  open('https://wa.me/919958614447?text='+encodeURIComponent(m),'_blank')});
+
+/* ---- live Delhi time + open/closed status (open 9:30 am - 7:30 pm) ---- */
+const ist=()=>{
+  const o={timeZone:'Asia/Kolkata'},d=new Date();
+  $('#ist').textContent=d.toLocaleTimeString('en-IN',{...o,hour:'2-digit',minute:'2-digit',hour12:true});
+  const p=d.toLocaleTimeString('en-GB',{...o,hour:'2-digit',minute:'2-digit',hour12:false}).split(':');
+  const m=+p[0]*60+ +p[1], open=m>=570&&m<1170;
+  $('#stx').textContent=open?'Open now · Closes 7:30 pm':'Closed · Opens 9:30 am';
+  $('#status .dot').classList.toggle('off',!open);
+};
+ist();setInterval(ist,30000);
+})();
+</script>
+<a id="toTop" class="to-top" href="#hero" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg></a>
+<canvas id="parts"aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none"></canvas>
+<script>
+(function(){
+const cv=document.getElementById('parts'),cx=cv.getContext('2d');
+const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let W,H,dpr,P=[];
+function size(){dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
+function make(){const n=Math.max(14,Math.min(28,Math.round(W/55)));P=[];
+ for(let i=0;i<n;i++)P.push({x:Math.random()*W,y:Math.random()*H,r:3+Math.random()*5,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,c:i%2?'0,160,227':'255,48,41',a:.35+Math.random()*.35})}
+function draw(){cx.clearRect(0,0,W,H);
+ for(const p of P){
+  if(!still){p.x+=p.vx;p.y+=p.vy;if(p.x<-12)p.x=W+12;if(p.x>W+12)p.x=-12;if(p.y<-12)p.y=H+12;if(p.y>H+12)p.y=-12}
+  cx.beginPath();cx.arc(p.x,p.y,p.r,0,6.2832);cx.lineWidth=1.5;cx.strokeStyle='rgba('+p.c+','+p.a+')';cx.stroke()}
+ if(!still)requestAnimationFrame(draw)}
+size();make();draw();
+addEventListener('resize',()=>{size();make();if(still)draw()});
+})();
+</script>
+</body>
+</html>
