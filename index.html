@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Co Works City</title>
 <meta name="description" content="Coworking in Dwarka Sector 26, opposite the International Convention Center. Dedicated seats, private cabins, meeting rooms and a virtual office address.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='295 22 350 580'%3E%3Cellipse cx='470' cy='145' rx='93' ry='86' fill='none' stroke='%23ff3029' stroke-width='52'/%3E%3Cellipse cx='470' cy='381' rx='87' ry='80' fill='none' stroke='%2300a0e3' stroke-width='50'/%3E%3Cpath fill='%2300a0e3' transform='translate(7 228)' d='M304 361C304 320 350 262 398 240L470 254 542 240C590 262 637 320 637 361L583 361C575 330 540 280 470 278 400 280 365 330 357 361Z'/%3E%3Cpath fill='%23ff3029' d='M304 361C304 320 350 262 398 240L470 254 542 240C590 262 637 320 637 361L583 361C575 330 540 280 470 278 400 280 365 330 357 361Z'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="https://coworkscity.com/wp-content/uploads/2021/01/10.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
@@ -16,7 +16,7 @@
   --head:"Manrope",system-ui,sans-serif; --body:"Inter",system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0}
-html{scroll-behavior:smooth;scroll-padding-top:72px}
+html{font-size:clamp(16px,.9vw + 4.5px,24px);scroll-behavior:smooth;scroll-padding-top:72px}
 body{font-family:var(--body);color:var(--ink);background:#f3f8fd;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 /* ---------- site-wide background: brand aurora + dot grid (fixed, same on every section) ---------- */
 body::before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
@@ -33,7 +33,7 @@ body::after{content:"";position:fixed;inset:-25%;z-index:-1;pointer-events:none;
 @keyframes aurora{0%{transform:translate3d(-2%,-1%,0) rotate(0) scale(1)}50%{transform:translate3d(3%,2%,0) rotate(6deg) scale(1.08)}100%{transform:translate3d(-1%,3%,0) rotate(-5deg) scale(1.03)}}
 a{color:inherit}
 .ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+.wrap{max-width:min(1560px,94vw);margin:0 auto;padding:0 24px}
 section{padding:56px 0}
 section:not(#hero){position:relative}
 section:not(#hero)::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:min(1112px,calc(100% - 48px));height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--red) 18%,var(--blue) 82%,transparent);opacity:.45}
@@ -55,17 +55,29 @@ h2 em,h1 em{font-style:normal;color:var(--blued)}
 #bar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--red),var(--blue));z-index:50}
 
 /* ---------- nav ---------- */
-nav.top{position:fixed;top:0;left:0;right:0;z-index:40;transition:background .3s,box-shadow .3s,color .3s;color:var(--ink)}
+nav.top{position:fixed;top:0;left:0;right:0;z-index:40;transition:background .3s,box-shadow .3s,color .3s,opacity .3s,transform .3s;color:var(--ink)}
 nav.top ul a{text-transform:uppercase;letter-spacing:.06em}
 nav.top .logo{transition:opacity .3s}
 nav.top:not(.solid) .logo{opacity:0;pointer-events:none}
 nav.top.solid{background:rgba(255,255,255,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--line);color:var(--ink)}
-nav .in{max-width:1160px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:32px}
+nav .in{max-width:min(1560px,94vw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;gap:32px}
 .logo{display:flex;gap:10px;align-items:center;text-decoration:none;font:800 1.1rem var(--head);letter-spacing:-.02em;margin-right:auto}
 .to-top{position:fixed;right:22px;bottom:22px;width:48px;height:48px;border-radius:50%;background:#fff;color:var(--ink);border:1px solid var(--line);box-shadow:0 10px 26px -8px rgba(12,14,20,.35);display:grid;place-items:center;z-index:60;opacity:0;visibility:hidden;transform:translateY(12px);transition:opacity .3s,transform .3s,visibility .3s,box-shadow .2s}
+.to-top{transition:opacity .3s,transform .45s cubic-bezier(.34,1.56,.64,1),visibility .3s,box-shadow .25s,background .25s,color .25s;transform:translateY(18px) scale(.6)}
 .to-top.show{opacity:1;visibility:visible;transform:none}
-.to-top:hover{box-shadow:0 14px 30px -8px rgba(0,160,227,.55);color:var(--blue)}
-.to-top svg{width:22px;height:22px}
+.to-top::before,.to-top::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+/* outer dashed ring: red/blue dashes that spin on hover */
+.to-top::before{inset:-7px;opacity:0;transform:scale(.8);transition:opacity .3s,transform .4s cubic-bezier(.34,1.4,.64,1);background:repeating-conic-gradient(var(--blue) 0 14deg,transparent 14deg 30deg,var(--red,#ff3029) 30deg 44deg,transparent 44deg 60deg);-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2.5px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2.5px))}
+.to-top:hover::before{opacity:1;transform:scale(1);animation:ttSpin 3.5s linear infinite}
+@keyframes ttSpin{to{transform:rotate(360deg)}}
+/* ripple ring that pulses outward */
+.to-top::after{inset:0;opacity:0;border:2px solid var(--blue)}
+.to-top:hover::after{animation:ttPulse 1.5s ease-out infinite}
+@keyframes ttPulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.9);opacity:0;border-color:var(--red,#ff3029)}}
+.to-top:hover{transform:translateY(-4px);border-color:transparent;box-shadow:0 14px 28px -8px rgba(0,160,227,.5),0 0 0 4px rgba(0,160,227,.08)}
+.to-top:active{transform:translateY(-1px) scale(.95);transition-duration:.12s}
+.to-top svg{width:24px;height:24px;transition:transform .3s}
+@media (prefers-reduced-motion:reduce){.to-top::before,.to-top::after{animation:none!important}}
 .logo .mark{width:25px;height:40px;flex:none;display:block}
 .logo .nav-logo{display:block;height:64px;width:auto;margin:-8px 0}
 .logo b{font-weight:800}.logo b span{font-weight:600;opacity:.8}
@@ -77,7 +89,7 @@ nav .btn{padding:10px 18px;font-size:.9rem}
 
 /* ---------- hero ---------- */
 #hero{background:transparent;color:var(--ink);padding:0;position:relative;overflow:hidden}
-.hero{max-width:1200px;margin:0 auto;padding:96px 24px 64px;min-height:100vh;display:grid;grid-template-columns:1fr 1.02fr;gap:44px;align-items:center}
+.hero{max-width:min(1600px,94vw);margin:0 auto;padding:96px 24px 64px;min-height:100vh;display:grid;grid-template-columns:1fr 1.02fr;gap:44px;align-items:center}
 .brand-logo{display:block;width:min(100%,380px);height:auto;margin:0 0 6px -8px;animation:pop .9s cubic-bezier(.2,.8,.2,1) both}
 @keyframes pop{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
 h1{font-size:clamp(2rem,3.5vw,3.05rem);font-weight:800;margin:10px 0 16px}
@@ -161,7 +173,7 @@ h1 em{color:var(--red)}
 .ticks li:hover{transform:translateX(6px);box-shadow:0 16px 34px -20px rgba(0,121,174,.5)}
 .ticks .ck{width:30px;height:30px;border-radius:9px;background:var(--redd);color:#fff;display:grid;place-items:center;flex:none}
 .ticks li:nth-child(even) .ck{background:var(--blued)}
-.ticks .ck .ic{width:17px;height:17px;stroke-width:2.6}
+.ticks .ck .ic{width:23px;height:23px;stroke-width:3.4}
 .about-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
 
 /* ---------- spaces ---------- */
@@ -196,6 +208,56 @@ dialog.sp[open]{animation:spin .3s cubic-bezier(.2,.8,.2,1)}
 .sp-in .sub{color:var(--mut);max-width:62ch;margin:4px 0 22px}
 .sp-in h4{font:700 .78rem var(--head);letter-spacing:.14em;text-transform:uppercase;color:var(--blued);margin:0 0 12px}
 .sp-gal{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-bottom:28px}
+.sp-gal.one{grid-template-columns:minmax(0,560px)}
+/* one-photo popup: photo on the left, prices + button on the right, all in one frame */
+@media(min-width:760px){
+dialog.sp.one{width:min(980px,calc(100% - 24px))}
+dialog.sp.one .sp-in{display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:auto auto auto auto 1fr;column-gap:30px;align-items:start;padding:30px 34px 28px}
+dialog.sp.one .sp-head,dialog.sp.one .sub{grid-column:1/-1}
+dialog.sp.one .sub{margin-bottom:18px;max-width:none}
+dialog.sp.one .h-ph{display:none}
+dialog.sp.one .sp-gal{grid-column:1;grid-row:3/7;margin:0;grid-template-columns:1fr;height:100%}
+dialog.sp.one .sp-gal figure{aspect-ratio:auto;height:100%;min-height:340px}
+dialog.sp.one .h-pr{grid-column:2;grid-row:3}
+dialog.sp.one .sp-prices{grid-column:2;grid-row:4;grid-template-columns:1fr;gap:10px;margin-bottom:18px}
+dialog.sp.one .sp-prices div{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 18px}
+dialog.sp.one .sp-prices b{margin:0}
+dialog.sp.one .sp-prices b.ask{padding:0;font-size:.98rem}
+dialog.sp.one .sp-cta{grid-column:2;grid-row:5;align-self:start;flex-direction:column;align-items:flex-start}
+dialog.sp.one .sp-gal figure{min-height:min(340px,42vh)}
+}
+/* keep every popup inside one frame: shorter photos, tighter spacing */
+dialog.sp .sp-in{padding:26px 30px 24px}
+dialog.sp .sp-in .sub{margin-bottom:14px}
+dialog.sp .sp-in h4{margin-bottom:9px}
+dialog.sp .sp-gal{margin-bottom:16px}
+dialog.sp .sp-prices{margin-bottom:18px}
+dialog.sp .sp-prices div{padding:12px 16px}
+dialog.sp:not(.one) .sp-gal figure{aspect-ratio:auto;height:clamp(140px,30vh,300px)}
+@media(max-width:759px){dialog.sp.one .sp-gal figure{aspect-ratio:auto;height:clamp(150px,28vh,260px)}}
+@media(max-width:560px){dialog.sp .sp-in{padding:24px 18px 20px}}
+/* popup animations */
+@keyframes spUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes spPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@keyframes spIco{0%{opacity:0;transform:scale(.4) rotate(-25deg)}60%{transform:scale(1.12) rotate(6deg)}100%{opacity:1;transform:none}}
+@keyframes spRing{0%{box-shadow:0 0 0 0 rgba(255,48,41,.45)}70%,100%{box-shadow:0 0 0 14px rgba(255,48,41,0)}}
+dialog.sp[open] .sp-head .ico{animation:spIco .6s cubic-bezier(.2,.9,.3,1) .1s backwards}
+dialog.sp[open] .sp-head h3{animation:spUp .5s cubic-bezier(.2,.9,.3,1) .12s backwards}
+dialog.sp[open] .sub{animation:spUp .5s cubic-bezier(.2,.9,.3,1) .2s backwards}
+dialog.sp[open] .sp-in h4{animation:spUp .5s cubic-bezier(.2,.9,.3,1) .26s backwards}
+dialog.sp[open] .sp-gal figure{animation:spPop .6s cubic-bezier(.2,.9,.3,1) .3s backwards}
+dialog.sp[open] .sp-gal figure:nth-child(2){animation-delay:.42s}
+dialog.sp[open] .sp-gal figure:nth-child(3){animation-delay:.54s}
+dialog.sp[open] .sp-prices div{animation:spUp .55s cubic-bezier(.2,.9,.3,1) .5s backwards}
+dialog.sp[open] .sp-prices div:nth-child(2){animation-delay:.6s}
+dialog.sp[open] .sp-prices div:nth-child(3){animation-delay:.7s}
+dialog.sp[open] .sp-cta{animation:spUp .55s cubic-bezier(.2,.9,.3,1) .75s backwards}
+dialog.sp[open] .sp-cta .btn{animation:spRing 2s ease-out 1.4s 3}
+.sp-gal img{transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.sp-gal figure:hover img{transform:scale(1.07)}
+.sp-prices div{transition:transform .25s,box-shadow .25s,border-color .25s}
+.sp-prices div:hover{transform:translateY(-3px);border-color:var(--blue);box-shadow:0 14px 28px -16px rgba(0,160,227,.5)}
+@media(prefers-reduced-motion:reduce){dialog.sp[open] *{animation:none!important}.sp-gal img,.sp-prices div{transition:none}}
 .sp-gal figure{position:relative;aspect-ratio:4/3;border-radius:16px;overflow:hidden;background:linear-gradient(135deg,#fff1f0,#e8f6fd);border:1px dashed #b9d9ea}
 .sp-gal .ph{position:absolute;inset:0;display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;color:var(--blued);font:600 .8rem var(--body);text-align:center;padding:8px}
 .sp-gal .ph .ic{width:30px;height:30px;opacity:.8}
@@ -229,11 +291,31 @@ label.f{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:upper
 #floor{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin:18px 0 28px}
 #floor div{color:#c5cee4;transition:color .25s,transform .25s}
 #floor div svg{width:100%;height:auto;fill:transparent;transition:fill .25s}
-#floor div.on{color:var(--blue);transform:translateY(-2px)}
-#floor div.on svg{fill:rgba(0,160,227,.14)}
+#floor div{transition:color .3s,transform .35s cubic-bezier(.3,0,.2,1),opacity .3s}
+#floor div.on{color:var(--blue);transform:translateY(-2px);animation:deskOn .6s cubic-bezier(.2,.9,.3,1) var(--d,0s) backwards}
+#floor div.on svg{fill:rgba(0,160,227,.14);animation:deskScr .9s ease-out var(--d,0s) backwards}
+@keyframes deskOn{0%{transform:translateY(10px) scale(.55);opacity:0}55%{transform:translateY(-7px) scale(1.2);opacity:1}78%{transform:translateY(0) scale(.95)}100%{transform:translateY(-2px) scale(1)}}
+@keyframes deskScr{0%{fill:rgba(0,160,227,.75);filter:drop-shadow(0 0 7px rgba(0,160,227,.9))}100%{fill:rgba(0,160,227,.14);filter:drop-shadow(0 0 0 rgba(0,160,227,0))}}
+@media(prefers-reduced-motion:reduce){#floor div.on,#floor div.on svg{animation:none}}
 .panel.dk .kicker{color:var(--mint)}
 #recT{font-size:1.75rem;font-weight:800;margin:4px 0 12px}
 #recP{color:rgba(255,255,255,.74)}
+.sum{display:grid;grid-template-columns:.7fr 1fr 1.7fr;gap:10px;margin:24px 0 22px}
+.sum div{border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:12px 14px;background:rgba(255,255,255,.05)}
+.sum small{display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55);font-weight:600}
+.sum b{display:block;font:800 1.05rem var(--head);margin-top:4px}
+.inc-h{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mint);font-weight:600;margin-bottom:12px}
+.recph{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:24px 0 8px}
+.recph[hidden]{display:none}
+.recph img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;border:1px solid rgba(255,255,255,.14);display:block;animation:phIn .6s cubic-bezier(.2,.9,.3,1) backwards}
+.recph img:nth-child(2){animation-delay:.12s}
+.recph.one{grid-template-columns:1fr}
+@keyframes phIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}
+.inc{list-style:none;margin:0;padding:0;display:grid;gap:11px}
+.inc li{display:flex;gap:12px;align-items:center;color:rgba(255,255,255,.86);font-size:.95rem}
+.inc .ck{width:24px;height:24px;border-radius:8px;background:var(--redd);color:#fff;display:grid;place-items:center;flex:none}
+.inc li:nth-child(even) .ck{background:var(--blued)}
+.inc .ck svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}
 .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:auto;padding-top:26px}
 .note{margin-top:16px;font-size:.8rem;color:rgba(255,255,255,.5)}
 
@@ -266,28 +348,61 @@ label.f{display:block;font-size:.72rem;letter-spacing:.14em;text-transform:upper
 #find{background:transparent}
 .find{display:grid;grid-template-columns:1.15fr .85fr;gap:22px;margin-top:48px}
 .map{position:relative;border:1px solid var(--line);border-radius:22px;overflow:hidden;min-height:380px;background:#e9eefa}
-.map svg{width:100%;height:100%;display:block}
+.map svg{width:100%;height:100%;display:block;overflow:visible}
 .path{stroke-dasharray:8 9;animation:dash 1.2s linear infinite}
 @keyframes dash{to{stroke-dashoffset:-17}}
-.contact{border:1px solid rgba(255,255,255,.9);border-radius:22px;padding:30px;background:rgba(255,255,255,.7);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);display:flex;flex-direction:column}
-.contact a.line{display:flex;gap:14px;align-items:flex-start;text-decoration:none;padding:14px 0;border-bottom:1px solid var(--line);transition:color .2s}
-.contact a.line:hover{color:var(--blued)}
-.contact a.line .ic{color:var(--blue);margin-top:3px}
-.contact small{display:block;color:var(--mut);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
-input.t,textarea.t{width:100%;background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--ink);font:inherit;font-size:.95rem}
-input.t:focus,textarea.t:focus{outline:2px solid var(--blue2);border-color:transparent}
-#form{display:grid;gap:10px;margin-top:22px}
+.contact{position:relative;overflow:hidden;border:1px solid rgba(255,255,255,.9);border-radius:22px;padding:30px 30px 28px;background:rgba(255,255,255,.78);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 24px 60px -34px rgba(15,26,48,.35);display:flex;flex-direction:column}
+.contact::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,var(--redd),var(--blue),var(--redd));background-size:200% 100%;animation:cBar 6s linear infinite}
+@keyframes cBar{to{background-position:-200% 0}}
+.c-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.c-head h3{font-size:1.35rem;font-weight:800;letter-spacing:-.01em}
+.c-open{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--blued);background:rgba(0,160,227,.1);border-radius:99px;padding:6px 12px;transition:.3s}
+.c-open.off{color:#c0241d;background:rgba(255,48,41,.1)}
+.c-open.off i{background:var(--red);animation:none}
+.c-open i{width:8px;height:8px;border-radius:50%;background:#22b573;box-shadow:0 0 0 0 rgba(34,181,115,.5);animation:cPulse 2s infinite}
+@keyframes cPulse{70%{box-shadow:0 0 0 8px rgba(34,181,115,0)}100%{box-shadow:0 0 0 0 rgba(34,181,115,0)}}
+.contact a.line{position:relative;display:flex;gap:16px;align-items:center;text-decoration:none;padding:12px;margin:0 -12px;border-radius:16px;line-height:1.4;transition:background .25s,transform .25s}
+.contact a.line:hover{background:rgba(0,160,227,.07);transform:translateX(4px)}
+.contact a.line>span{flex:1;min-width:0;font-weight:500}
+.contact a.line>.ic:first-child{box-sizing:content-box;width:20px;height:20px;padding:11px;border-radius:14px;color:var(--blued);background:linear-gradient(135deg,#e6f5fc,#fff);border:1px solid #cfe9f7;transition:background .25s,color .25s,transform .25s,box-shadow .25s}
+.contact a.line:hover>.ic:first-child{background:var(--blue);border-color:var(--blue);color:#fff;transform:rotate(-6deg) scale(1.06);box-shadow:0 10px 20px -8px rgba(0,160,227,.7)}
+.contact a.line>.go{width:18px;height:18px;color:var(--blue);opacity:0;transform:translateX(-8px);transition:.25s}
+.contact a.line:hover>.go{opacity:1;transform:none}
+.contact small{display:block;color:var(--mut);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;margin-bottom:2px}
+.c-div{display:flex;align-items:center;gap:12px;margin:18px 0 8px;font:800 .8rem var(--head);letter-spacing:.14em;text-transform:uppercase;color:#fff}
+.c-div::before,.c-div::after{content:"";height:2px;flex:1;border-radius:2px;background:linear-gradient(90deg,rgba(0,160,227,0),#00a0e3)}
+.c-div::after{background:linear-gradient(270deg,rgba(255,48,41,0),#ff3029)}
+.c-div span{padding:8px 18px;border-radius:99px;background:linear-gradient(90deg,#ff3029,#00a0e3);box-shadow:0 6px 16px -6px rgba(0,160,227,.6)}
+input.t,textarea.t{width:100%;background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 16px;color:var(--ink);font:inherit;font-size:.95rem;transition:border-color .2s,box-shadow .2s,transform .2s}
+input.t:hover,textarea.t:hover{border-color:#b9d9ea}
+input.t:focus,textarea.t:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 4px rgba(0,160,227,.16)}
+textarea.t{resize:vertical;min-height:84px}
+#form{display:grid;gap:10px;margin-top:12px}
+#form .btn{position:relative;overflow:hidden;padding:15px 24px}
+#form .btn::after{content:"";position:absolute;top:0;bottom:0;width:60px;left:-90px;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:cShine 4.5s ease-in-out 1.5s infinite}
+@keyframes cShine{0%,60%{left:-90px}100%{left:120%}}
+#form .btn .ic{width:18px;height:18px;transition:transform .25s}
+#form .btn:hover .ic{transform:translateX(5px)}
+.contact.in .c-head,.contact.in a.line,.contact.in .c-div,.contact.in #form>*{animation:cUp .6s cubic-bezier(.2,.9,.3,1) backwards}
+.contact.in .c-head{animation-delay:.1s}
+.contact.in a.line:nth-of-type(1){animation-delay:.2s}.contact.in a.line:nth-of-type(2){animation-delay:.3s}.contact.in a.line:nth-of-type(3){animation-delay:.4s}.contact.in a.line:nth-of-type(4){animation-delay:.5s}
+.contact.in .c-div{animation-delay:.6s}
+.contact.in #form>:nth-child(1){animation-delay:.68s}.contact.in #form>:nth-child(2){animation-delay:.76s}.contact.in #form>:nth-child(3){animation-delay:.84s}.contact.in #form>:nth-child(4){animation-delay:.92s}
+@keyframes cUp{from{opacity:0;transform:translateY(18px)}}
+@media(prefers-reduced-motion:reduce){.contact::before,.c-open i,#form .btn::after{animation:none}.contact.in *{animation:none!important}}
 
 footer{background:var(--navy);color:rgba(255,255,255,.66);padding:56px 0 34px;font-size:.9rem}
 footer .top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:28px;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.12)}
 footer .logo{color:#fff}
 .foot-logo{display:inline-block;margin-bottom:-6px}
 .foot-logo+p{margin-top:0}
-.foot-logo img{display:block;width:230px;max-width:100%;height:auto;filter:invert(1) hue-rotate(180deg);mix-blend-mode:screen}
-footer p{max-width:36ch;margin-top:14px}
-footer ul{list-style:none;padding:0;display:grid;gap:8px}
-footer ul a{text-decoration:none}footer ul a:hover{color:#fff}
-footer h4{font:700 .78rem var(--head);letter-spacing:.14em;text-transform:uppercase;color:#fff;margin-bottom:14px}
+.foot-logo img{display:block;width:230px;max-width:100%;height:auto;filter:url(#logoDark)}
+footer p{max-width:36ch;margin-top:14px;color:#fff}
+footer ul{list-style:none;padding:0;display:grid;gap:8px;color:#fff}
+footer ul a{text-decoration:none;color:#fff;transition:color .2s}footer ul a:hover{color:#5cc8f5}
+footer h4{position:relative;display:inline-block;font:700 .85rem var(--head);letter-spacing:.14em;text-transform:uppercase;color:#5cc8f5;margin-bottom:20px;padding-bottom:10px}
+footer h4::after{content:"";position:absolute;left:0;bottom:0;width:34px;height:3px;border-radius:3px;background:linear-gradient(90deg,#ff3029,#00a0e3);transition:width .3s}
+footer .top>div:hover h4::after{width:100%}
 footer .bot{padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.82rem}
 
 /* ---------- responsive ---------- */
@@ -506,10 +621,10 @@ footer .bot{padding-top:24px;display:flex;justify-content:space-between;flex-wra
         <h3 class="reveal">Take the first step to <em>success</em> by working from an office.</h3>
         <p class="reveal">Co Works City provides a hassle-free environment with abundant amenities, making it the go-to destination for those looking for a peaceful and productive workspace in Dwarka, New Delhi.</p>
         <ul class="ticks">
-          <li class="reveal"><span class="ck"><svg class="ic"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>A true coworking space.</li>
-          <li class="reveal"><span class="ck"><svg class="ic"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Most affordable plans for you.</li>
-          <li class="reveal"><span class="ck"><svg class="ic"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Extremely well-connected location.</li>
-          <li class="reveal"><span class="ck"><svg class="ic"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Power back-up, fast Wi-Fi and meeting rooms.</li>
+          <li class="reveal"><span class="ck"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>A true coworking space.</li>
+          <li class="reveal"><span class="ck"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Most affordable plans for you.</li>
+          <li class="reveal"><span class="ck"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Extremely well-connected location.</li>
+          <li class="reveal"><span class="ck"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Power back-up, fast Wi-Fi and meeting rooms.</li>
         </ul>
         <div class="about-cta reveal">
           <a class="btn p" href="#plan">Plan your workspace <svg class="ic"><use href="#i-arrow"/></svg></a>
@@ -541,9 +656,9 @@ footer .bot{padding-top:24px;display:flex;justify-content:space-between;flex-wra
     <button type="button" class="sp-x" id="spX" aria-label="Close">&times;</button>
     <div class="sp-head"><div class="ico" id="spI"></div><h3 id="spT"></h3></div>
     <p class="sub" id="spP"></p>
-    <h4>Photos</h4>
+    <h4 class="h-ph">Photos</h4>
     <div class="sp-gal" id="spG"></div>
-    <h4>Prices</h4>
+    <h4 class="h-pr">Prices</h4>
     <div class="sp-prices" id="spR"></div>
     <div class="sp-cta"><a class="btn p" id="spW" target="_blank" rel="noopener">Ask on WhatsApp</a><span>Tell us your team size and we'll confirm availability.</span></div>
   </div>
@@ -579,6 +694,20 @@ footer .bot{padding-top:24px;display:flex;justify-content:space-between;flex-wra
         <span class="kicker">Our suggestion</span>
         <h3 id="recT"></h3>
         <p id="recP"></p>
+        <div class="sum">
+          <div><small>Team</small><b id="sumN">4</b></div>
+          <div><small>Duration</small><b id="sumD">1 month</b></div>
+          <div><small>Open</small><b>9:30am – 7:30pm</b></div>
+        </div>
+        <span class="inc-h">What's included</span>
+        <ul class="inc" id="inc"></ul>
+        <div class="recph" id="recPh" hidden>
+          <img src="images/private-cabin-1.jpg" alt="Private cabin with a desk, shelving and a warm lamp" loading="lazy" onerror="this.remove()">
+          <img src="images/private-cabin-2.jpg" alt="Private cabin with a desk and glass partition" loading="lazy" onerror="this.remove()">
+        </div>
+        <div class="recph one" id="recSuite" hidden>
+          <img src="images/cabin-suite-1.jpg" alt="Cabin suite with white desks, hanging plants and warm shelf lighting" loading="lazy" onerror="this.remove()">
+        </div>
         <div class="row">
           <a class="btn p" id="wa" target="_blank" rel="noopener">Send on WhatsApp</a>
           <a class="btn g" id="ml">Email instead</a>
@@ -638,17 +767,31 @@ footer .bot{padding-top:24px;display:flex;justify-content:space-between;flex-wra
         <a class="btn p mapbtn" href="https://www.google.com/maps/search/?api=1&query=CoWorks+City+Bharthal+Dwarka+Sector+26+New+Delhi" target="_blank" rel="noopener"><svg class="ic" style="width:18px;height:18px"><use href="#i-pin"/></svg>Open in Google Maps</a>
         <svg style="text-transform:uppercase" viewBox="0 0 600 400" role="img" aria-label="Stylised route from Dwarka Sector 25 metro to Co Works City">
           <defs><pattern id="g" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#d5deef"/></pattern></defs>
-          <rect width="600" height="400" fill="url(#g)"/>
-          <path id="expw" d="M0 100 C150 120 300 70 600 110" stroke="#fff" stroke-width="22" fill="none"/>
+          <rect x="-600" y="-900" width="1800" height="2200" fill="url(#g)"/>
+          <!-- extra city blocks above and below the route, so the map fills the card at any height -->
+          <g fill="#dce4f6">
+            <rect x="24" y="-32" width="96" height="36" rx="8"/><rect x="140" y="-32" width="70" height="36" rx="8"/><rect x="230" y="-32" width="120" height="36" rx="8"/><rect x="370" y="-32" width="84" height="36" rx="8"/><rect x="474" y="-32" width="100" height="36" rx="8"/>
+            <rect x="24" y="-92" width="70" height="40" rx="8"/><rect x="114" y="-92" width="110" height="40" rx="8"/><rect x="244" y="-92" width="80" height="40" rx="8"/><rect x="344" y="-92" width="90" height="40" rx="8"/>
+            <rect x="24" y="-156" width="120" height="44" rx="8"/><rect x="164" y="-156" width="76" height="44" rx="8"/><rect x="260" y="-156" width="100" height="44" rx="8"/><rect x="474" y="-156" width="100" height="44" rx="8"/>
+            <rect x="24" y="-224" width="90" height="48" rx="8"/><rect x="134" y="-224" width="120" height="48" rx="8"/><rect x="274" y="-224" width="84" height="48" rx="8"/><rect x="378" y="-224" width="76" height="48" rx="8"/><rect x="474" y="-224" width="100" height="48" rx="8"/>
+            <rect x="262" y="424" width="86" height="40" rx="8"/><rect x="368" y="424" width="100" height="40" rx="8"/><rect x="488" y="424" width="90" height="40" rx="8"/>
+            <rect x="24" y="424" width="90" height="40" rx="8"/><rect x="262" y="486" width="110" height="44" rx="8"/><rect x="392" y="486" width="76" height="44" rx="8"/><rect x="488" y="486" width="90" height="44" rx="8"/>
+            <rect x="262" y="552" width="90" height="46" rx="8"/><rect x="372" y="552" width="106" height="46" rx="8"/><rect x="498" y="552" width="80" height="46" rx="8"/>
+            <rect x="262" y="620" width="120" height="48" rx="8"/><rect x="402" y="620" width="76" height="48" rx="8"/><rect x="498" y="620" width="80" height="48" rx="8"/>
+          </g>
+          <g fill="#d9ecdf"><rect x="474" y="-92" width="100" height="40" rx="8"/><rect x="24" y="486" width="96" height="44" rx="8"/><rect x="24" y="552" width="70" height="46" rx="8"/></g>
+          <path d="M0 -42 H600 M0 -102 H600 M0 -166 H600" stroke="#fff" stroke-width="7" fill="none" opacity=".85"/>
+          <path d="M0 470 H600 M0 536 H600 M0 604 H600" stroke="#fff" stroke-width="7" fill="none" opacity=".85"/>          <path id="expw" d="M0 100 C150 120 300 70 600 110" stroke="#fff" stroke-width="22" fill="none"/>
           <path d="M0 100 C150 120 300 70 600 110" stroke="#cfd8ee" stroke-width="1.5" stroke-dasharray="10 8" fill="none"/>
           <text font-size="11" fill="#3b4a73" font-weight="700" font-family="Inter,sans-serif" letter-spacing="1.5"><textPath href="#expw" startOffset="50%" text-anchor="middle" dy="4">DWARKA EXPRESSWAY</textPath></text>
           <path d="M200 400 C230 320 330 300 350 140 S380 120 380 100" stroke="#fff" stroke-width="12" fill="none"/>
+          <path d="M20 880 L200 400" stroke="#fff" stroke-width="12" fill="none"/>
           <rect x="40" y="170" width="110" height="64" rx="12" fill="#d9ecdf"/>
           <rect x="360" y="165" width="160" height="90" rx="14" fill="#cfdcfb" stroke="#9db4f3" stroke-dasharray="4 6"/>
           <text x="440" y="355" text-anchor="middle" fill="#3b4a73" font-size="12" font-family="Inter,sans-serif" font-weight="600">Yashobhoomi (IICC)</text>
           <rect x="355" y="281" width="50" height="22" rx="11" fill="#fff" stroke="#00a0e3" stroke-width="1.5"/>
           <text x="380" y="296" text-anchor="middle" fill="#0079ae" font-size="12" font-weight="800" font-family="Manrope,sans-serif">100m</text>
-          <path d="M70 52 C150 40 230 56 300 70" stroke="#ff3029" stroke-width="2.5" stroke-dasharray="3 7" stroke-linecap="round" fill="none"/>
+          <path d="M196 52 C232 48 268 56 300 70" stroke="#ff3029" stroke-width="2.5" stroke-dasharray="3 7" stroke-linecap="round" fill="none"/>
           <text x="22" y="40" fill="#e5231c" font-size="13" font-weight="800" font-family="Inter,sans-serif">&#9992; IGI Airport</text>
           <text x="22" y="56" fill="#5b6785" font-size="11" font-family="Inter,sans-serif">via Dwarka Expressway</text>
           <path class="path" d="M300 290 C340 290 400 270 450 225" stroke="#00a0e3" stroke-width="4" fill="none" stroke-linecap="round"/>
@@ -661,15 +804,16 @@ footer .bot{padding-top:24px;display:flex;justify-content:space-between;flex-wra
         </svg>
       </div>
       <div class="contact reveal">
-        <a class="line" href="https://www.google.com/maps/search/?api=1&query=CoWorks+City+Bharthal+Dwarka+Sector+26+New+Delhi" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pin"/></svg><span><small>Address</small>497 Bharthal, Dwarka Sector 26, opposite International Convention Center, New Delhi 110077</span></a>
-        <a class="line" href="tel:+919958614447"><svg class="ic"><use href="#i-phone"/></svg><span><small>Call</small>+91 99586 14447</span></a>
-        <a class="line" href="mailto:contact@coworkscity.com"><svg class="ic"><use href="#i-mail"/></svg><span><small>Email</small>contact@coworkscity.com</span></a>
-        <a class="line" href="https://www.instagram.com/coworks_city/" target="_blank" rel="noopener"><svg class="ic"><use href="#i-insta"/></svg><span><small>Follow us on Instagram</small>@coworks_city</span></a>
+        <div class="c-head"><h3>Get in touch</h3><span class="c-open" id="cOpen"><i></i><span id="cOpenTx">9:30 am &ndash; 7:30 pm</span></span></div>
+        <a class="line" href="https://www.google.com/maps/search/?api=1&query=CoWorks+City+Bharthal+Dwarka+Sector+26+New+Delhi" target="_blank" rel="noopener"><svg class="ic"><use href="#i-pin"/></svg><span><small>Address</small>497 Bharthal, Dwarka Sector 26, opposite International Convention Center, New Delhi 110077</span><svg class="ic go"><use href="#i-arrow"/></svg></a>
+        <a class="line" href="tel:+919958614447"><svg class="ic"><use href="#i-phone"/></svg><span><small>Call</small>+91 99586 14447</span><svg class="ic go"><use href="#i-arrow"/></svg></a>
+        <a class="line" href="mailto:contact@coworkscity.com"><svg class="ic"><use href="#i-mail"/></svg><span><small>Email</small>contact@coworkscity.com</span><svg class="ic go"><use href="#i-arrow"/></svg></a>
+        <a class="line" href="https://www.instagram.com/coworks_city/" target="_blank" rel="noopener"><svg class="ic"><use href="#i-insta"/></svg><span><small>Follow us on Instagram</small>@coworks_city</span><svg class="ic go"><use href="#i-arrow"/></svg></a>
+        <div class="c-div"><span>Book a site visit</span></div>
         <form id="form">
-          <input class="t" id="fn" placeholder="Your name" required aria-label="Your name">
+          <input class="t" id="fn" placeholder="Your name" required aria-label="Your name" autocomplete="name">
           <textarea class="t" id="fm" rows="2" placeholder="What are you looking for?" required aria-label="What are you looking for?"></textarea>
-          <button class="btn p" type="submit" style="justify-content:center">Book a site visit</button>
-        </form>
+          <button class="btn p" type="submit" style="justify-content:center">Book a site visit<svg class="ic"><use href="#i-arrow"/></svg></button>        </form>
       </div>
     </div>
   </div>
@@ -680,6 +824,7 @@ footer .bot{padding-top:24px;display:flex;justify-content:space-between;flex-wra
   <div class="wrap">
     <div class="top">
       <div>
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="logoDark" color-interpolation-filters="sRGB"><feColorMatrix type="matrix" values="0.181 0 -1.124 0 1  -0.70 -0.595 0 0 1  -0.806 -0.175 0 0 1  0 0 0 1 0"/></filter></svg>
         <a class="foot-logo" href="#hero" aria-label="Co Works City home"><img src="https://coworkscity.com/wp-content/uploads/2021/01/10.png" alt="Co Works City — Shaping the future of work" width="1157" height="731" loading="lazy"></a>
         <p>Shaping the future of work, from Dwarka Sector 26, New Delhi.</p>
       </div>
@@ -751,9 +896,9 @@ if(!reduce)$$('.card').forEach(c=>{
 const SPACES={
   seat:{photos:['images/dedicated-seat-1.jpg','images/dedicated-seat-2.jpg','images/dedicated-seat-3.jpg'],
     prices:[['Per seat · monthly',''],['Per seat · yearly','']]},
-  cabin:{photos:['images/private-cabin-1.jpg','images/private-cabin-2.jpg','images/private-cabin-3.jpg'],
+  cabin:{photos:['images/private-cabin-1.jpg','images/private-cabin-2.jpg'],
     prices:[['Per cabin · monthly',''],['Per cabin · yearly','']]},
-  meeting:{photos:['images/meeting-room-1.jpg','images/meeting-room-2.jpg','images/meeting-room-3.jpg'],
+  meeting:{photos:['images/meeting-room-1.jpg'],
     prices:[['Per hour',''],['Half day',''],['Full day','']]},
   virtual:{photos:['images/virtual-office-1.jpg','images/virtual-office-2.jpg','images/virtual-office-3.jpg'],
     prices:[['Per month',''],['Per year','']]}
@@ -764,7 +909,7 @@ function showSpace(card){
   $('#spT').textContent=name;
   $('#spP').textContent=card.querySelector('p').textContent;
   $('#spI').innerHTML=card.querySelector('.ico').innerHTML;
-  const g=$('#spG');g.textContent='';
+  const g=$('#spG');g.textContent='';g.classList.toggle('one',s.photos.length===1);$('#sp').classList.toggle('one',s.photos.length===1);
   s.photos.forEach((src,i)=>{
     const f=document.createElement('figure');
     f.innerHTML='<div class="ph"><svg class="ic"><use href="#i-laptop"/></svg>Photo coming soon</div>';
@@ -789,17 +934,32 @@ dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
 dlg.addEventListener('close',()=>document.documentElement.classList.remove('lock'));
 
 /* ---- planner ---- */
-const fl=$('#floor');
+const fl=$('#floor');fl._p=0;
 for(let i=0;i<50;i++){const d=document.createElement('div');d.innerHTML='<svg class="ic" viewBox="0 0 24 24"><use href="#i-mon"/></svg>';fl.appendChild(d)}
 function plan(){
   const n=+$('#people').value,need=document.querySelector('[name=need]:checked').value,dur=document.querySelector('[name=dur]:checked').value;
-  $('#size').textContent=n;[...fl.children].forEach((d,i)=>d.classList.toggle('on',i<n));
-  let T,P;
-  if(need==='virtual'){T='Virtual office';P='A professional Delhi business address for your registration and mail, with no desk to maintain. You can upgrade to a seat whenever you need to be on site.'}
-  else if(need==='meet'){T=n>12?'Meeting room, large format':'Meeting room';P=`Meeting room for ${n} with audio-visual setup, whiteboards, tea/coffee and fast Wi-Fi. ${n>12?'For this headcount we will confirm the best-sized room for you.':''}`}
-  else if(need==='cabin'||n>=4){T=n>14?'Cabin suite':'Private cabin';P=`A lockable private space for your team of ${n}, in the middle of a shared community, so you get privacy without isolation.`}
-  else{T=n===1?'Your own dedicated seat':`${n} dedicated seats, side by side`;P='Reserved seats that are always yours, chosen where you like. Add a private cabin later if the team grows.'}
+  $('#size').textContent=n;
+  [...fl.children].forEach((d,i)=>{const on=i<n;
+    if(on&&!d.classList.contains('on'))d.style.setProperty('--d',Math.min((i-fl._p)*28,500)+'ms');
+    d.classList.toggle('on',on)});
+  fl._p=n;
+  let T,P,K;
+  if(need==='virtual'){K='virtual';T='Virtual office';P='A professional Delhi business address for your registration and mail, with no desk to maintain. You can upgrade to a seat whenever you need to be on site.'}
+  else if(need==='meet'){K='meet';T=n>12?'Meeting room, large format':'Meeting room';P=`Meeting room for ${n} with audio-visual setup, whiteboards, tea/coffee and fast Wi-Fi. ${n>12?'For this headcount we will confirm the best-sized room for you.':''}`}
+  else if(need==='cabin'||n>=4){K='cabin';T=n>14?'Cabin suite':'Private cabin';P=`A lockable private space for your team of ${n}, in the middle of a shared community, so you get privacy without isolation.`}
+  else{K='seat';T=n===1?'Your own dedicated seat':`${n} dedicated seats, side by side`;P='Reserved seats that are always yours, chosen where you like. Add a private cabin later if the team grows.'}
   $('#recT').textContent=T;$('#recP').textContent=P;
+  $('#sumN').textContent=n;$('#sumD').textContent=dur;
+  const INC={
+    seat:['A reserved desk that is always yours','Fast Wi-Fi and power back-up','Centralised A/C, tea & coffee','CCTV security around the clock'],
+    cabin:['A lockable private space for your team','Fast Wi-Fi and power back-up','Centralised A/C, tea & coffee','CCTV security around the clock'],
+    meet:['Audio-visual setup and whiteboards','Fast Wi-Fi for calls and demos','Centralised A/C','Tea & coffee on request'],
+    virtual:['A business address in Dwarka, Delhi','For registration and mail','No desk to maintain','Upgrade to a seat any time']
+  };
+  const tick='<span class="ck"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>';
+  $('#inc').innerHTML=INC[K].map(t=>'<li>'+tick+t+'</li>').join('');
+  $('#recPh').hidden=!(K==='cabin'&&T==='Private cabin');
+  $('#recSuite').hidden=!(K==='cabin'&&T==='Cabin suite');
   const msg=`Hi Co Works City! I'd like to know about: ${T} for ${n} ${n>1?'people':'person'}, for ${dur}. Could you share rates and availability?`;
   $('#wa').href='https://wa.me/919958614447?text='+encodeURIComponent(msg);
   $('#ml').href='mailto:contact@coworkscity.com?subject='+encodeURIComponent('Workspace enquiry: '+T)+'&body='+encodeURIComponent(msg);
@@ -819,11 +979,13 @@ const ist=()=>{
   const m=+p[0]*60+ +p[1], open=m>=570&&m<1170;
   $('#stx').textContent=open?'Open now · Closes 7:30 pm':'Closed · Opens 9:30 am';
   $('#status .dot').classList.toggle('off',!open);
+  $('#cOpenTx').textContent=open?'Open now · 9:30 am – 7:30 pm':'Closed · Opens 9:30 am';
+  $('#cOpen').classList.toggle('off',!open);
 };
 ist();setInterval(ist,30000);
 })();
 </script>
-<a id="toTop" class="to-top" href="#hero" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 15l7-7 7 7"/></svg></a>
+<a id="toTop" class="to-top" href="#hero" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="url(#ttGrad)" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><defs><linearGradient id="ttGrad" gradientUnits="userSpaceOnUse" x1="12" y1="4" x2="12" y2="20"><stop offset="0" stop-color="#ff3029"/><stop offset="1" stop-color="#00a0e3"/></linearGradient></defs><path d="M12 19V5M5.5 11.5L12 5l6.5 6.5"/></svg></a>
 <canvas id="parts"aria-hidden="true" style="position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none"></canvas>
 <script>
 (function(){
@@ -831,8 +993,11 @@ const cv=document.getElementById('parts'),cx=cv.getContext('2d');
 const still=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let W,H,dpr,P=[];
 function size(){dpr=Math.min(devicePixelRatio||1,2);W=innerWidth;H=innerHeight;cv.width=W*dpr;cv.height=H*dpr;cx.setTransform(dpr,0,0,dpr,0,0)}
-function make(){const n=Math.max(14,Math.min(28,Math.round(W/55)));P=[];
- for(let i=0;i<n;i++)P.push({x:Math.random()*W,y:Math.random()*H,r:3+Math.random()*5,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,c:i%2?'0,160,227':'255,48,41',a:.35+Math.random()*.35})}
+function make(){const n=Math.max(9,Math.min(18,Math.round(W/90)));P=[];
+ for(let i=0;i<n;i++){const edge=Math.random()*.2*W,x=i%2?edge:W-edge;
+  P.push({x:(W<700||i%3===0)?Math.random()*W:x,y:Math.random()*H,r:2.5+Math.random()*3.5,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,c:i%2?'0,160,227':'255,48,41',a:.25+Math.random()*.25})}
+ const m=W<700?4:Math.max(6,Math.round(W/200));
+ for(let i=0;i<m;i++)P.push({x:W*(.2+Math.random()*.6),y:Math.random()*H,r:2.5+Math.random()*3.5,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,c:i%2?'0,160,227':'255,48,41',a:.3+Math.random()*.25})}
 function draw(){cx.clearRect(0,0,W,H);
  for(const p of P){
   if(!still){p.x+=p.vx;p.y+=p.vy;if(p.x<-12)p.x=W+12;if(p.x>W+12)p.x=-12;if(p.y<-12)p.y=H+12;if(p.y>H+12)p.y=-12}
